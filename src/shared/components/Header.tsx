@@ -1,45 +1,27 @@
-import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { MenuDesktop } from './MenuDesktop';
+import { MenuMobile } from './MenuMobile';
 
 function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
   return (
     <header className="row-start-1 col-span-12">
-      <nav className="flex p-5 border border-x-0 border-b-secondary" aria-label="Main navigation">
-        <MenuDesktop />
+      <nav className="flex p-5 border-b border-secondary w-full" aria-label="Main navigation">
+        <div className="hidden md:block w-full">
+          <MenuDesktop />
+        </div>
+
+        <div className="md:hidden w-full">
+          <MenuMobile isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
+        </div>
       </nav>
     </header>
   );
 }
 
 export default Header;
-
-export function MenuDesktop() {
-  const pageLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'Profile', to: '/profile' },
-  ];
-
-  return (
-    <div className="flex w-full items-center justify-between">
-      <NavLink to="/" aria-label="Go to homepage">
-        <img src="" alt="Website logo" />
-      </NavLink>
-
-      <div className="md:flex hidden space-x-4">
-        {pageLinks.map(({ label, to }) => (
-          <NavLink
-            key={to}
-            className={({ isActive }) =>
-              `px-2 py-2 ${isActive ? 'underline font-semibold decoration-gray-800 decoration-4' : 'bg-transparent'}`
-            }
-            to={to}
-            aria-label={`Go to ${label}`}
-          >
-            {label}
-          </NavLink>
-        ))}
-      </div>
-
-      <div>Avatar</div>
-    </div>
-  );
-}
