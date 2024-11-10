@@ -1,9 +1,9 @@
-import Venues from './components/Venues';
+import VenueList from './components/VenueList';
 
 function Home() {
   return (
     <div>
-      <Venues />
+      <VenueList />
     </div>
   );
 }
