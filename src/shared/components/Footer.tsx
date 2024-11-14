@@ -56,7 +56,7 @@ function Footer() {
           </div>
         </nav>
 
-        <div className="flex flex-col items-center p-4 text-center text-xs font-semibold">
+        <div className="flex flex-col items-center p-4 text-center text-body-small font-medium">
           <p className="mb-1">&copy; 2024 Holidaze Booking. All Rights Reserved</p>
           <p>
             Made with <PiHeartStraightFill className="inline text-status-error-red" aria-label="heart icon" />

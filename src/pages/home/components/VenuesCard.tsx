@@ -46,7 +46,7 @@ function VenuesCard({ data, loading }: CardProps) {
 
       <div className="my-4">
         <h2 className="tracking-tight text-primary-dark-blue text-body-normal font-semibold mb-1">{name}</h2>
-        <div className="text-typography-primary-blue flex items-center gap-1 text-xs font-medium">
+        <div className="text-typography-primary-blue flex items-center gap-1 text-body-small font-medium">
           <PiMapPinFill />
           {locationCountry}
         </div>
@@ -57,15 +57,15 @@ function VenuesCard({ data, loading }: CardProps) {
       <div className="flex items-center justify-between">
         <div className="flex flex-col items-start">
           <StarRating rating={rating} />
-          <div className="text-typography-primary-grey text-xs flex space-x-1">
+          <div className="text-typography-primary-grey text-body-small flex space-x-1">
             <span>{reviews}</span>
             <span>reviews</span>
           </div>
         </div>
 
         <div className="flex flex-col items-end">
-          <span className="tracking-tight text-accent-pink font-bold text-xl">{price}</span>
-          <span className="text-typography-primary-grey text-xs">per person</span>
+          <span className="tracking-tight text-accent-pink font-bold text-heading-4">{price}</span>
+          <span className="text-typography-primary-grey text-body-small">per person</span>
         </div>
       </div>
     </div>
