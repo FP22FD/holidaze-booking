@@ -3,18 +3,20 @@ import { NavLink } from 'react-router-dom';
 interface ButtonProps {
   label: string;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary';
+  type: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary' | 'default';
   disabled?: boolean;
   className?: string;
   to?: string;
 }
 
-const Button = ({ label, onClick, variant = 'primary', disabled = false, className = '', to }: ButtonProps) => {
+const Button = ({ label, onClick, type, variant = 'primary', disabled = false, className = '', to }: ButtonProps) => {
   const baseClasses = 'py-2 px-4 rounded transition-colors duration-200 font-bold';
 
-  const variantClasses: { [key in 'primary' | 'secondary']: string } = {
+  const variantClasses: { [key in 'primary' | 'secondary' | 'default']: string } = {
     primary: 'bg-pink-gradient hover:bg-pink-gradient-dark text-typography-primary-white',
     secondary: 'border border-neutral-default text-typography-primary-grey bg-background-default hover:scale-105',
+    default: 'bg-main-blue hover:bg-blue-primary-dark text-typography-primary-white text-center',
   };
 
   if (to) {
@@ -26,8 +28,13 @@ const Button = ({ label, onClick, variant = 'primary', disabled = false, classNa
   }
 
   return (
-    <button onClick={onClick} className={`${baseClasses} ${variantClasses[variant]} ${className}`} disabled={disabled}>
-      {label}w
+    <button
+      type={type}
+      onClick={onClick}
+      className={`${baseClasses} ${variantClasses[variant]} ${className}`}
+      disabled={disabled}
+    >
+      {label}
     </button>
   );
 };
