@@ -1,15 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../Button';
-import logo from '../../assets/logo.svg';
+import Button from './Button';
+import logo from '../../assets/images/logo.svg';
 import { DropdownMenu } from './DropdownMenu';
 
 export function MenuDesktop() {
   const isCustomer = true;
   const isManager = false;
 
-  const handleLogout = () => {
-    console.log('Logout button was clicked');
-  };
+  const handleLogout = () => {};
 
   return (
     <div className="flex w-full items-center justify-between">
@@ -31,7 +29,7 @@ export function MenuDesktop() {
             <>
               {
                 <div className="flex space-x-4">
-                  {<Button label="Log out" to="/" onClick={handleLogout} variant="secondary" />}
+                  {<Button type="button" label="Log out" to="/auth/login" onClick={handleLogout} variant="secondary" />}
                 </div>
               }
             </>
@@ -39,8 +37,8 @@ export function MenuDesktop() {
             <>
               {
                 <div className="flex space-x-4">
-                  <Button label="Login" to="/login" variant="secondary" />
-                  <Button label="Register" to="/login" variant="primary" />
+                  <Button type="button" label="Login" to="/login" variant="secondary" />
+                  <Button type="button" label="Register" to="/login" variant="primary" />
                 </div>
               }
             </>

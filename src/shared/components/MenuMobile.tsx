@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../Button';
-import logo from '../../assets/logo.svg';
+import Button from './Button';
+import logo from '../../assets/images/logo.svg';
 import {
   PiExportLight,
   PiHouseLineLight,
@@ -19,9 +19,7 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
   const isCustomer = true;
   const isManager = false;
 
-  const handleLogout = () => {
-    console.log('Logout button was clicked');
-  };
+  const handleLogout = () => {};
 
   const pageLinks = [
     { label: 'Home', to: '/home', icon: <PiHouseLineLight className="w-5 h-5" /> },
@@ -31,7 +29,7 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
       ? [
           {
             label: 'Log out',
-            to: '/login',
+            to: '/auth/login',
             icon: <PiExportLight className="w-5 h-5 rotate-[-90deg]" />,
             onClick: handleLogout,
           },
@@ -66,7 +64,7 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
       {isMobileMenuOpen && (
         <div
           id="mobile-menu"
-          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-20 transition-transform duration-300 transform flex flex-col ${
+          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-custom z-20 transition-transform duration-300 transform flex flex-col ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           role="menu"
@@ -98,7 +96,7 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
 
                     <div className="flex flex-col text-md">
                       <span className="font-semibold text-primary-dark-blue">Carol_Carter</span>
-                      <span className="text-gray-600 text-sm">{userType}</span>
+                      <span className="text-gray-600 text-body-medium">{userType}</span>
                     </div>
                   </div>
 
@@ -144,8 +142,8 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
 
               {!(isCustomer || isManager) && (
                 <div className="flex space-x-4">
-                  <Button label="Login" to="/login" variant="secondary" />
-                  <Button label="Register" to="/login" variant="primary" />
+                  <Button type="button" label="Login" to="/login" variant="secondary" />
+                  <Button type="button" label="Register" to="/login" variant="primary" />
                 </div>
               )}
             </div>
