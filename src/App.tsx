@@ -5,11 +5,12 @@ import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Profile from './pages/profile/Profile';
 import Venue from './pages/venue/Venue';
+import AuthPage from './pages/auth/AuthPage';
 
 function ErrorPage() {
   return (
     <div>
-      <h1 className="text-3xl text-neutral-grayish-blue text-center">An error has occurred.</h1>
+      <h1 className="text-heading-2 text-neutral-grayish-blue text-center">An error has occurred.</h1>
       <Link className="hover:text-gray-200" to="/">
         Home
       </Link>
@@ -30,6 +31,14 @@ function App() {
         {
           path: '/venues/:id',
           element: <Venue />,
+        },
+        {
+          path: '/auth/login',
+          element: <AuthPage />,
+        },
+        {
+          path: '/auth/register',
+          element: <AuthPage />,
         },
         {
           path: '/profile',

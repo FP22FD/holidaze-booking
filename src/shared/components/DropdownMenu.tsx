@@ -14,7 +14,7 @@ export function DropdownMenu({ isManager }: DropdownMenuProps) {
     { label: 'Home', to: '/home', icon: <PiHouseLineLight className="w-5 h-5" /> },
     { label: 'Profile', to: '/profile', icon: <PiUserRectangleLight className="w-5 h-5" /> },
     ...(isManager ? [{ label: 'Dashboard', to: '/dashboard', icon: <PiLayoutLight className="w-5 h-5" /> }] : []),
-    { label: 'Log out', to: '/login', icon: <PiExportLight className="w-5 h-5 rotate-[-90deg]" /> },
+    { label: 'Log out', to: '/auth/login', icon: <PiExportLight className="w-5 h-5 rotate-[-90deg]" /> },
   ];
 
   const userType = isManager ? 'Manager' : 'Customer';
@@ -53,7 +53,7 @@ export function DropdownMenu({ isManager }: DropdownMenuProps) {
             </div>
             <div className="flex flex-col text-md">
               <span className="font-semibold text-primary-dark-blue">Carol_Carter</span>
-              <span className="text-gray-600 text-sm">{userType}</span>
+              <span className="text-gray-600 text-body-medium">{userType}</span>
             </div>
           </div>
 
