@@ -12,7 +12,7 @@ export function useFetchVenues() {
     const venuesController = new AbortController();
     const { signal } = venuesController;
 
-    const fechtData = async () => {
+    const fetchData = async () => {
       try {
         const response = await fetch(API_VENUES, { signal });
 
@@ -41,7 +41,7 @@ export function useFetchVenues() {
       }
     };
 
-    fechtData();
+    fetchData();
 
     return () => {
       venuesController.abort();
