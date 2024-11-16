@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <footer
-      className="row-start-3 col-span-12 max-h-[100px} overflow-y-auto"
+      className="row-start-3 col-span-12 max-h-[100px} overflow-y-auto mt-20"
       role="contentinfo"
       aria-label="Footer section"
     >
