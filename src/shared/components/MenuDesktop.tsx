@@ -4,7 +4,7 @@ import logo from '../../assets/images/logo.svg';
 import { DropdownMenu } from './DropdownMenu';
 
 export function MenuDesktop() {
-  const isCustomer = true;
+  const isCustomer = false;
   const isManager = false;
 
   const handleLogout = () => {};
@@ -37,8 +37,8 @@ export function MenuDesktop() {
             <>
               {
                 <div className="flex space-x-4">
-                  <Button type="button" label="Login" to="/login" variant="secondary" />
-                  <Button type="button" label="Register" to="/login" variant="primary" />
+                  <Button type="button" label="Login" to="/auth/login" variant="secondary" />
+                  <Button type="button" label="Register" to="/auth/register" variant="primary" />
                 </div>
               }
             </>

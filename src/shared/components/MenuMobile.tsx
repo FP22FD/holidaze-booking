@@ -16,7 +16,7 @@ interface MenuMobileProps {
 }
 
 export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobileProps) {
-  const isCustomer = true;
+  const isCustomer = false;
   const isManager = false;
 
   const handleLogout = () => {};
@@ -142,8 +142,8 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
 
               {!(isCustomer || isManager) && (
                 <div className="flex space-x-4">
-                  <Button type="button" label="Login" to="/login" variant="secondary" />
-                  <Button type="button" label="Register" to="/login" variant="primary" />
+                  <Button type="button" label="Login" to="/auth/login" variant="secondary" />
+                  <Button type="button" label="Register" to="/auth/register" variant="primary" />
                 </div>
               )}
             </div>
