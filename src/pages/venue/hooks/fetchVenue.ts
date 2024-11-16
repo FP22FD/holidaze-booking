@@ -13,6 +13,7 @@ export function useFetchVenue(id: string): { data: SingleVenue | null; loading: 
     const { signal } = venueController;
 
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch(API_VENUE(id), { signal });
 
