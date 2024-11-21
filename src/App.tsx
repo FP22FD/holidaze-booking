@@ -6,6 +6,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import Profile from './pages/profile/Profile';
 import Venue from './pages/venue/Venue';
 import AuthPage from './pages/auth/AuthPage';
+import Dashboard from './pages/adminPage/components/Dashboard';
+import { PersistProvider } from './store/PersistContext';
 
 function ErrorPage() {
   return (
@@ -44,6 +46,10 @@ function App() {
           path: '/profile',
           element: <Profile />,
         },
+        {
+          path: '/admin',
+          element: <Dashboard />,
+        },
       ],
     },
     {
@@ -53,9 +59,11 @@ function App() {
   ]);
 
   return (
-    <HelmetProvider>
-      <RouterProvider router={router} />
-    </HelmetProvider>
+    <PersistProvider>
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
+    </PersistProvider>
   );
 }
 
