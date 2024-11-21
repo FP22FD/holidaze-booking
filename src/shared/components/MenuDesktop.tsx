@@ -2,12 +2,10 @@ import { NavLink } from 'react-router-dom';
 import Button from './Button';
 import logo from '../../assets/images/logo.svg';
 import { DropdownMenu } from './DropdownMenu';
+import { usePersistContext } from '../../store/usePersistContext';
 
 export function MenuDesktop() {
-  const isCustomer = false;
-  const isManager = false;
-
-  const handleLogout = () => {};
+  const { userType, logOut } = usePersistContext();
 
   return (
     <div className="flex w-full items-center justify-between">
@@ -16,20 +14,18 @@ export function MenuDesktop() {
       </NavLink>
 
       <div className="hidden md:flex items-center space-x-4">
-        {/* If not manager, show 'List Your Property' */}
-        {!isManager && (
+        {userType !== 'manager' && (
           <NavLink to="/list-property" className="text-primary-dark-blue hover:text-accent-pink font-bold">
             List Your Property
           </NavLink>
         )}
 
-        {/* Show authentication buttons */}
         <div className="flex space-x-4">
-          {isCustomer || isManager ? (
+          {userType !== 'guest' ? (
             <>
               {
                 <div className="flex space-x-4">
-                  {<Button type="button" label="Log out" to="/auth/login" onClick={handleLogout} variant="secondary" />}
+                  {<Button type="button" label="Log out" onClick={logOut} variant="secondary" />}
                 </div>
               }
             </>
@@ -45,12 +41,11 @@ export function MenuDesktop() {
           )}
         </div>
 
-        {/* Show avatar and dropdown if customer or manager */}
-        {(isCustomer || isManager) && (
+        {userType !== 'guest' && (
           <div className="flex items-center space-x-4">
             <div className="border-l border-neutral-dark h-6"></div>
 
-            <DropdownMenu isCustomer={isCustomer} isManager={isManager} />
+            <DropdownMenu />
           </div>
         )}
       </div>
