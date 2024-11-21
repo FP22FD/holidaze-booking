@@ -26,7 +26,7 @@ function VenueCard() {
       searchBar={false}
       error={error}
     >
-      <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16">
+      <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 mt-2">
         <div className="w-full md:w-2/3 mb-8 md:mb-0">
           <img className="w-full object-cover h-64 sm:h-80 lg:h-96" src={imageUrl} alt={altText || 'Product image'} />
 

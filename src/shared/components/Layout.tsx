@@ -4,19 +4,17 @@ import Footer from './Footer';
 
 function Layout() {
   const location = useLocation();
-  const shouldHideHeaderFooter = ['/auth/login', '/auth/register'].includes(location.pathname);
+  const isAuthPage = ['/auth/login', '/auth/register'].includes(location.pathname);
 
   return (
     <div className="min-h-screen grid grid-cols-12 grid-rows-[min-content_1fr_min-content]">
-      {!shouldHideHeaderFooter && <Header />}
+      {!isAuthPage && <Header />}
 
-      {/* <main className="row-start-2 col-span-12 px-4  md:px-12 lg:px-16"> */}
-      <main className="col-span-12">
+      <main className={`col-span-12 ${isAuthPage ? 'mt-0' : 'mt-40'}`}>
         <Outlet />
       </main>
 
-      {!shouldHideHeaderFooter && <Footer />}
-      {/* <Footer /> */}
+      {!isAuthPage && <Footer />}
     </div>
   );
 }
