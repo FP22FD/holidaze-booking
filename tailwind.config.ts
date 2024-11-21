@@ -56,7 +56,8 @@ module.exports = {
           'light-blue': '#36A5E5', // Use for hover states, borders, and shadows on light sections
         },
         accent: {
-          pink: '#ff1464', // Use for small accents (badges, icons), hover effects, and alternative CTAs
+          pink: '#ff1464', // Use for small accents, badges, icons
+          pinkLight: 'rgba(254, 242, 242, 1)', // Use for hover effects, and alternative backgrounds
           peach: '#FFEEA9', // Use for background highlights (testimonials, special offers) and card backgrounds
         },
         typography: {
