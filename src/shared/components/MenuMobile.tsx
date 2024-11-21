@@ -55,7 +55,7 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
       {isMobileMenuOpen && (
         <div
           id="mobile-menu"
-          className={`fixed top-0 right-0 h-full w-64 bg-neutral-white shadow-custom z-20 transition-transform duration-300 transform flex flex-col ${
+          className={`fixed top-0 right-0 h-full w-64 bg-neutral-white shadow-custom z-30 transition-transform duration-300 transform flex flex-col ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           role="menu"
