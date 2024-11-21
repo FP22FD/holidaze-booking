@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { loginUser } from '../hooks/loginUser';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '../../../shared/components/Button';
+import { useLoginUser } from '../hooks/useLoginUser';
+import { usePersistContext } from '../../../store/usePersistContext';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -16,6 +16,7 @@ const validationSchema = Yup.object({
 
 function LoginForm() {
   const navigate = useNavigate();
+  const { setProfileData, setAccessToken } = usePersistContext();
 
   const {
     register,
@@ -25,27 +26,18 @@ function LoginForm() {
     resolver: yupResolver(validationSchema),
   });
 
-  const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
+  const { loading, error, loginUser } = useLoginUser();
 
   const onSubmit: SubmitHandler<{ email: string; password: string }> = async (data, e) => {
     e?.preventDefault();
 
-    if (!(data.email && data.password)) return;
+    const { success, data: userData, accessToken } = await loginUser(data.email, data.password);
 
-    setLoading(true);
-    setError('');
-
-    const { success, error: msg } = await loginUser(data.email, data.password);
-
-    setLoading(false);
-
-    if (!success) {
-      setError(msg || '');
-      return;
+    if (success && userData && accessToken) {
+      setProfileData(userData);
+      setAccessToken(accessToken);
+      navigate('/profile');
     }
-
-    navigate('/profile');
   };
 
   return (
@@ -81,6 +73,7 @@ function LoginForm() {
           <input
             id="password"
             type="password"
+            autoComplete="off"
             {...register('password')}
             placeholder="Enter your password"
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"

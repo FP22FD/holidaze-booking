@@ -1,10 +1,9 @@
-import { useState } from 'react';
-import { registerUser } from '../hooks/registerUser';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Button from '../../../shared/components/Button';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Button from '../../../shared/components/Button';
+import { useRegisterUser } from '../hooks/useRegisterUser';
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Please enter your name').min(3, 'Your first name should be at least 3 characters'),
@@ -26,27 +25,16 @@ function RegisterForm() {
     resolver: yupResolver(validationSchema),
   });
 
-  const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
+  const { loading, error, registerUser } = useRegisterUser();
 
   const onSubmit: SubmitHandler<{ name: string; email: string; password: string }> = async (data, e) => {
     e?.preventDefault();
 
-    if (!(data.name && data.email && data.password)) return;
+    const { success, data: userData } = await registerUser(data.name, data.email, data.password);
 
-    setLoading(true);
-    setError('');
-
-    const { success, error: msg } = await registerUser(data.name, data.email, data.password);
-
-    setLoading(false);
-
-    if (!success) {
-      setError(msg || '');
-      return;
+    if (success && userData) {
+      navigate('/profile');
     }
-
-    navigate('/profile');
   };
 
   return (
@@ -96,6 +84,7 @@ function RegisterForm() {
           <input
             id="password"
             type="password"
+            autoComplete="off"
             {...register('password')}
             placeholder="Enter your password"
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
