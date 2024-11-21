@@ -1,8 +1,10 @@
 import { expect, test, describe, vi, beforeEach } from 'vitest';
 import { render } from 'vitest-browser-react';
-import LoginForm from './LoginForm';
 import { BrowserRouter } from 'react-router-dom';
-import { loginUser } from '../hooks/loginUser';
+import LoginForm from './LoginForm';
+import { PersistProvider } from '../../../store/PersistContext';
+import { HelmetProvider } from 'react-helmet-async';
+import { useLoginUser } from '../hooks/useLoginUser';
 
 describe('LoginForm', async () => {
   beforeEach(() => {
@@ -11,9 +13,13 @@ describe('LoginForm', async () => {
 
   test('renders the form correctly', async () => {
     const screen = render(
-      <BrowserRouter>
-        <LoginForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <LoginForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Debug the rendered component
@@ -29,9 +35,13 @@ describe('LoginForm', async () => {
 
   test('shows validation messages on submitting empty form', async () => {
     const screen = render(
-      <BrowserRouter>
-        <LoginForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <LoginForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Trigger form submission
@@ -44,9 +54,13 @@ describe('LoginForm', async () => {
 
   test('validates email and password format', async () => {
     const screen = render(
-      <BrowserRouter>
-        <LoginForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <LoginForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     await screen.getByLabelText(/Email/i).fill('foo');
@@ -59,16 +73,19 @@ describe('LoginForm', async () => {
   });
 
   test('submits form with valid data', async () => {
-    vi.mock('../hooks/loginUser', () => {
-      return {
-        loginUser: vi.fn().mockResolvedValueOnce({ success: true, error: null }),
-      };
-    });
+    vi.mock('../hooks/useLoginUser');
+
+    const mockLoginUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    (useLoginUser as any).mockReturnValue({ loginUser: mockLoginUser, loading: false, error: null });
 
     const screen = render(
-      <BrowserRouter>
-        <LoginForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <LoginForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Fill in the form fields with valid data
@@ -80,21 +97,25 @@ describe('LoginForm', async () => {
 
     // Ensure loginUser has been called with the correct data
     await vi.waitFor(() => {
-      expect(loginUser).toHaveBeenCalledTimes(1);
+      expect(mockLoginUser).toHaveBeenCalledTimes(1);
+      expect(mockLoginUser).toHaveBeenCalledWith('harry@stud.noroff.no', '12345678');
     });
   });
 
   test('submits form with invalid data', async () => {
-    vi.mock('../hooks/loginUser', () => {
-      return {
-        loginUser: vi.fn().mockResolvedValueOnce({ success: false, error: null }),
-      };
-    });
+    vi.mock('../hooks/useLoginUser');
+
+    const mockLoginUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    (useLoginUser as any).mockReturnValue({ loginUser: mockLoginUser, loading: false, error: null });
 
     const screen = render(
-      <BrowserRouter>
-        <LoginForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <LoginForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Fill in the form fields with invalid data
@@ -106,7 +127,7 @@ describe('LoginForm', async () => {
 
     // Ensure loginUser has been called with the incorrect data
     await vi.waitFor(() => {
-      expect(loginUser).toHaveBeenCalledTimes(0);
+      expect(mockLoginUser).toHaveBeenCalledTimes(0);
     });
   });
 });

@@ -1,8 +1,10 @@
 import { expect, test, describe, vi, beforeEach } from 'vitest';
 import { render } from 'vitest-browser-react';
-import RegisterForm from './RegisterForm';
 import { BrowserRouter } from 'react-router-dom';
-import { registerUser } from '../hooks/registerUser';
+import RegisterForm from './RegisterForm';
+import { PersistProvider } from '../../../store/PersistContext';
+import { HelmetProvider } from 'react-helmet-async';
+import { useRegisterUser } from '../hooks/useRegisterUser';
 
 describe('RegisterForm', async () => {
   beforeEach(() => {
@@ -11,9 +13,13 @@ describe('RegisterForm', async () => {
 
   test('renders the form correctly', async () => {
     const screen = render(
-      <BrowserRouter>
-        <RegisterForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <RegisterForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Debug the rendered component
@@ -30,9 +36,13 @@ describe('RegisterForm', async () => {
 
   test('shows validation messages on submitting empty form', async () => {
     const screen = render(
-      <BrowserRouter>
-        <RegisterForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <RegisterForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Trigger form submission
@@ -46,9 +56,13 @@ describe('RegisterForm', async () => {
 
   test('validates name, email and password format', async () => {
     const screen = render(
-      <BrowserRouter>
-        <RegisterForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <RegisterForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     await screen.getByLabelText(/Name/i).fill('fo');
@@ -63,16 +77,19 @@ describe('RegisterForm', async () => {
   });
 
   test('submits form with valid data', async () => {
-    vi.mock('../hooks/registerUser', () => {
-      return {
-        registerUser: vi.fn().mockResolvedValueOnce({ success: true, error: null }),
-      };
-    });
+    vi.mock('../hooks/useRegisterUser');
+
+    const mockRegisterUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    (useRegisterUser as any).mockReturnValue({ registerUser: mockRegisterUser, loading: false, error: null });
 
     const screen = render(
-      <BrowserRouter>
-        <RegisterForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <RegisterForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Fill in the form fields with valid data
@@ -85,21 +102,25 @@ describe('RegisterForm', async () => {
 
     // Ensure registerUser has been called with the correct data
     await vi.waitFor(() => {
-      expect(registerUser).toHaveBeenCalledTimes(1);
+      expect(mockRegisterUser).toHaveBeenCalledTimes(1);
+      expect(mockRegisterUser).toHaveBeenCalledWith('Harry', 'harry@stud.noroff.no', '12345678');
     });
   });
 
   test('submits form with invalid data', async () => {
-    vi.mock('../hooks/registerUser', () => {
-      return {
-        registerUser: vi.fn().mockResolvedValueOnce({ success: false, error: null }),
-      };
-    });
+    vi.mock('../hooks/useRegisterUser');
+
+    const mockRegisterUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    (useRegisterUser as any).mockReturnValue({ registerUser: mockRegisterUser, loading: false, error: null });
 
     const screen = render(
-      <BrowserRouter>
-        <RegisterForm />
-      </BrowserRouter>,
+      <PersistProvider>
+        <HelmetProvider>
+          <BrowserRouter>
+            <RegisterForm />
+          </BrowserRouter>
+        </HelmetProvider>
+      </PersistProvider>,
     );
 
     // Fill in the form fields with invalid data
@@ -112,7 +133,7 @@ describe('RegisterForm', async () => {
 
     // Ensure registerUser has been called with the incorrect data
     await vi.waitFor(() => {
-      expect(registerUser).toHaveBeenCalledTimes(0);
+      expect(mockRegisterUser).toHaveBeenCalledTimes(0);
     });
   });
 });
