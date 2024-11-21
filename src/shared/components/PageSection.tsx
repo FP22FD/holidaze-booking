@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SEO } from './SEO';
+import { AutoCompleteSearchBar } from '../../pages/home/components/SeachBar';
 
 interface PageProps {
   title: string;
@@ -14,7 +15,11 @@ function PageSection({ title, seoTitle, seoDescription, error, searchBar = false
   return (
     <section className="row-start-1 col-span-12 flex flex-col items-center">
       <SEO title={seoTitle} description={seoDescription} />
-      {searchBar && <div className="w-full px-2 md:w-3/4 my-6 hidden">Here is the search bar component</div>}
+      {searchBar && (
+        <div className="w-full px-2 md:w-3/4 my-6">
+          <AutoCompleteSearchBar />
+        </div>
+      )}
       <div className="max-w-screen-xl w-full mx-auto px-4 lg:px-8 flex flex-col items-center">
         <div className="w-full text-left border-b">
           <h1 className="text-primary-dark-blue font-semibold text-md md:text-heading-4 capitalize inline-block relative">
