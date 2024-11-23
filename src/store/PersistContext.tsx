@@ -21,6 +21,7 @@ interface PersistContextProps {
 export const PersistContext = createContext<PersistContextProps | undefined>(undefined);
 
 export const PersistProvider = ({ children }: { children: ReactNode }) => {
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
@@ -44,6 +45,8 @@ export const PersistProvider = ({ children }: { children: ReactNode }) => {
     if (accessTokenStored) {
       setAccessToken(accessTokenStored);
     }
+
+    setIsInitialized(true);
   }, []);
 
   const handleSetProfileData = (value: ProfileData) => {
@@ -66,6 +69,10 @@ export const PersistProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleRequireUserLevel = (requiredUserType: UserType) => {
+    if (!isInitialized) {
+      return;
+    }
+
     let redirect = false;
     if (requiredUserType === 'customer' && userType !== 'customer' && userType !== 'manager') {
       redirect = true;
