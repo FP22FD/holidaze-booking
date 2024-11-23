@@ -17,5 +17,5 @@ export const API_DATA_PROFILE = (name: string) => new URL(`${API_BASE_URL}/holid
 
 export const API_BOOKINGS_PROFILE = (name: string) =>
   new URL(
-    `${API_BASE_URL}/holidaze/profiles/${name}/bookings?sort=created&sortOrder=desc&limit=100&_customer=true&_venue=true`,
+    `${API_BASE_URL}/holidaze/profiles/${name}/bookings?limit=10&sort=created&sortOrder=asc&_customer=true&_venue=true`,
   );
