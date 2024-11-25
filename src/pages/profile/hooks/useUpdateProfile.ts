@@ -1,47 +1,8 @@
 import { useState } from 'react';
 import { ErrorHandler } from '../../../shared/utils/errorHandler';
-import { API_DATA_PROFILE, API_KEY } from '../../../shared/utils/endpoints';
-
-/** GET single profile response. */
-export interface ProfileResponse {
-  data: ProfileData;
-  meta: Meta;
-}
-
-export interface ProfileData {
-  name: string;
-  email: string;
-  bio: string;
-  avatar: Avatar;
-  banner: Banner;
-  venueManager: boolean;
-  _count: Count;
-}
-
-export interface Avatar {
-  url: string;
-  alt: string;
-}
-
-export interface Banner {
-  url: string;
-  alt: string;
-}
-
-export interface Count {
-  venues: number;
-  bookings: number;
-}
-
-export interface Meta {
-  isFirstPage: boolean;
-  isLastPage: boolean;
-  currentPage: number;
-  previousPage?: number;
-  nextPage: number;
-  pageCount: number;
-  totalCount: number;
-}
+import { API_UPDATE_PROFILE, API_KEY } from '../../../shared/utils/endpoints';
+import { ProfileResponse } from '../type/updateProfile.type';
+import { ProfileData } from '../../../types/profile.type';
 
 export function useUpdateProfile() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -51,11 +12,11 @@ export function useUpdateProfile() {
     try {
       setLoading(true);
 
-      const response = await fetch(API_DATA_PROFILE(profileData.name), {
+      const response = await fetch(API_UPDATE_PROFILE(profileData.name), {
         method: 'PUT',
         body: JSON.stringify(profileData),
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           'X-Noroff-API-Key': API_KEY,
           'Content-Type': 'application/json',
         },
