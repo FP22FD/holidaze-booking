@@ -13,9 +13,7 @@ export const API_VENUE = (id: string) => new URL(`${API_BASE_URL}/holidaze/venue
 export const API_VENUES_SEARCH = (query: string) =>
   new URL(`${API_BASE_URL}/holidaze/venues/search?limit=10&sort=name&sortOrder=asc&q=${query}`);
 
-export const API_DATA_PROFILE = (name: string) => new URL(`${API_BASE_URL}/holidaze/profiles/${name}`);
+export const API_UPDATE_PROFILE = (name: string) => new URL(`${API_BASE_URL}/holidaze/profiles/${name}`);
 
-export const API_BOOKINGS_PROFILE = (name: string) =>
-  new URL(
-    `${API_BASE_URL}/holidaze/profiles/${name}/bookings?limit=10&sort=created&sortOrder=asc&_customer=true&_venue=true`,
-  );
+export const API_DATA_PROFILE = (name: string) =>
+  new URL(`${API_BASE_URL}/holidaze/profiles/${name}/?_venues=true&_bookings=true`);
