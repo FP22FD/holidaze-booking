@@ -1,40 +1,7 @@
 import { ErrorHandler } from '../../../shared/utils/errorHandler';
 import { API_REGISTER } from '../../../shared/utils/endpoints';
 import { useState } from 'react';
-
-export interface RegisterResponse {
-  data: UserData;
-  meta: Meta;
-}
-
-export interface UserData {
-  name: string;
-  email: string;
-  bio: string;
-  avatar: Avatar;
-  banner: Banner;
-  venueManager: boolean;
-}
-
-export interface Avatar {
-  url: string;
-  alt: string;
-}
-
-export interface Banner {
-  url: string;
-  alt: string;
-}
-
-export interface Meta {
-  isFirstPage: boolean;
-  isLastPage: boolean;
-  currentPage: number;
-  previousPage?: string | number;
-  nextPage?: string | number;
-  pageCount: number;
-  totalCount: number;
-}
+import { RegisterResponse, UserData } from '../types/registerResponse.type';
 
 export function useRegisterUser() {
   const [error, setError] = useState<string>('');

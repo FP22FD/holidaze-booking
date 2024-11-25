@@ -1,3 +1,6 @@
+import { Avatar } from './avatar.types';
+import { Meta } from './meta.types';
+
 /** GET single profile response. */
 export interface ProfileResponse {
   data: ProfileData;
@@ -11,30 +14,20 @@ export interface ProfileData {
   avatar: Avatar;
   banner: Banner;
   venueManager: boolean;
-  _count: Count;
+  // _count: Count;
 }
 
-export interface Avatar {
-  url: string;
-  alt: string;
-}
+// export interface Avatar {
+//   url: string;
+//   alt: string;
+// }
 
 export interface Banner {
   url: string;
   alt: string;
 }
 
-export interface Count {
-  venues: number;
-  bookings: number;
-}
-
-export interface Meta {
-  isFirstPage: boolean;
-  isLastPage: boolean;
-  currentPage: number;
-  previousPage?: number;
-  nextPage: number;
-  pageCount: number;
-  totalCount: number;
-}
+// export interface Count {
+//   venues: number;
+//   bookings: number;
+// }

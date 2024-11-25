@@ -1,10 +1,13 @@
+import { Media } from './media.types';
+import { Meta } from './meta.types';
+
 /** GET venue detail response. */
 export interface VenueResponse {
-  data: SingleVenue;
+  data: Venue;
   meta?: Meta;
 }
 
-export interface SingleVenue {
+export interface Venue {
   id: string;
   name: string;
   description: string;
@@ -17,11 +20,6 @@ export interface SingleVenue {
   meta: Facilities;
   location: Location;
   _count: Count;
-}
-
-export interface Media {
-  url: string;
-  alt: string;
 }
 
 export interface Facilities {
@@ -43,14 +41,4 @@ export interface Location {
 
 export interface Count {
   bookings: number;
-}
-
-export interface Meta {
-  isFirstPage: boolean;
-  isLastPage: boolean;
-  currentPage: number;
-  previousPage?: string | number;
-  nextPage?: string | number;
-  pageCount: number;
-  totalCount: number;
 }
