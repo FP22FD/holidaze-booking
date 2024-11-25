@@ -1,39 +1,33 @@
 import { useState } from 'react';
-import Button from '../../../shared/components/Button';
-import { BookingData, useBookingsProfile } from '../hooks/useBookingsProfile';
 import { PiImageDuotone } from 'react-icons/pi';
+import { Booking } from '../../../types/booking.types';
 
 interface Props {
-  name: string;
+  upcomingBookings: Booking[];
 }
 
-const UpcomingBookings = ({ name }: Props) => {
-  const { loading, error, data } = useBookingsProfile(name);
+const UpcomingBookings = ({ upcomingBookings }: Props) => {
   const [imageError, setImageError] = useState<boolean>(false);
 
   const handleImageError = () => {
     setImageError(true);
   };
 
-  if (!data) {
+  if (!upcomingBookings) {
     return null;
   }
 
-  const getImageUrl = (booking: BookingData) => (booking.venue.media?.length ? booking.venue.media[0].url : '');
-  const getAltText = (booking: BookingData) =>
-    booking.venue.media?.length ? booking.venue.media[0].alt : 'Venue Image';
+  const getImageUrl = (booking: Booking) => (booking.venue.media?.length ? booking.venue.media[0].url : '');
+  const getAltText = (booking: Booking) => (booking.venue.media?.length ? booking.venue.media[0].alt : 'Venue Image');
 
   return (
     <div className="p-2">
       <h2 className="text-primary-dark-blue text-heading-6 mb-6">Upcoming Bookings</h2>
 
-      {loading && <p className="text-typography-primary-grey">Loading...</p>}
-      {error && <p className="text-status-error-red">{error}</p>}
-
-      {!loading && !error && data.length === 0 && <p className="text-primary-grey">No upcoming bookings found.</p>}
+      {upcomingBookings.length === 0 && <p className="text-primary- pt-6">You don't have any upcoming bookings.</p>}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {data.map((booking: BookingData) => (
+        {upcomingBookings.map((booking: Booking) => (
           <div key={booking.id} className="bg-neutral-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center space-x-4">
               <div className="object-cover rounded overflow-hidden">
@@ -63,10 +57,6 @@ const UpcomingBookings = ({ name }: Props) => {
                   <p>{new Date(booking.dateTo).toLocaleDateString()}</p>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-4 place-self-end">
-              <Button label={'Delete'} type={'button'} variant="secondary" />
             </div>
           </div>
         ))}
