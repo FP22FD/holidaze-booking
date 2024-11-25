@@ -10,7 +10,7 @@ export function useSearchVenues(query: string) {
 
   useEffect(() => {
     if (!query.trim()) {
-      setData([]); // Clear results if no query
+      setData([]);
       return;
     }
 
@@ -45,7 +45,7 @@ export function useSearchVenues(query: string) {
     searchData();
 
     return () => {
-      searchController.abort(); // Cleanup fetch request on unmount
+      searchController.abort();
     };
   }, [query]);
 

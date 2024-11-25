@@ -14,7 +14,6 @@ export const AutoCompleteSearchBar = () => {
 
   const handleKeyDown = () => {
     setShowResults(true);
-    // }
   };
 
   const handleCloseDropdown = () => {
