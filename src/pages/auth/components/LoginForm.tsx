@@ -8,10 +8,11 @@ import { usePersistContext } from '../../../store/usePersistContext';
 
 const validationSchema = Yup.object({
   email: Yup.string()
+    .trim()
     .required('Please enter your email address')
     .email('Please enter a valid email address')
     .matches(/^[\w-.]+@stud.noroff\.no$/, 'Email must end with @stud.noroff.no'),
-  password: Yup.string().required('Please enter your password').min(8, 'Password must be at least 8 characters'),
+  password: Yup.string().trim().required('Please enter your password').min(8, 'Password must be at least 8 characters'),
 }).required();
 
 function LoginForm() {
@@ -41,7 +42,11 @@ function LoginForm() {
   };
 
   return (
-    <form className="space-y-12 flex flex-col place-items-center rounded-b-lg px-4" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="space-y-12 flex flex-col place-items-center rounded-b-lg px-4"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+    >
       <div className="text-center mt-4">
         <h1 className="text-primary-dark-blue font-bold text-heading-4 sm:text-heading-3 md:text-heading-2">
           Welcome back!
@@ -61,6 +66,7 @@ function LoginForm() {
             type="text"
             {...register('email')}
             placeholder="Enter your email"
+            aria-describedby={errors.email ? 'emailError' : undefined}
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
 
@@ -76,6 +82,7 @@ function LoginForm() {
             autoComplete="off"
             {...register('password')}
             placeholder="Enter your password"
+            aria-describedby={errors.password ? 'passwordError' : undefined}
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
 

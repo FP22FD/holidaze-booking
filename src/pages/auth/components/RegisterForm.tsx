@@ -6,12 +6,16 @@ import Button from '../../../shared/components/Button';
 import { useRegisterUser } from '../hooks/useRegisterUser';
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Please enter your name').min(3, 'Your first name should be at least 3 characters'),
+  name: Yup.string()
+    .trim()
+    .required('Please enter your name')
+    .min(3, 'Your first name should be at least 3 characters'),
   email: Yup.string()
+    .trim()
     .required('Please enter your email address')
     .email('Please enter a valid email address')
     .matches(/^[\w-.]+@stud.noroff\.no$/, 'Email must end with @stud.noroff.no'),
-  password: Yup.string().required('Please enter your password').min(8, 'Password must be at least 8 characters'),
+  password: Yup.string().trim().required('Please enter your password').min(8, 'Password must be at least 8 characters'),
 }).required();
 
 function RegisterForm() {
@@ -38,7 +42,11 @@ function RegisterForm() {
   };
 
   return (
-    <form className="space-y-8 flex flex-col place-items-center rounded-b-lg px-4" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="space-y-8 flex flex-col place-items-center rounded-b-lg px-4"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+    >
       <div className="text-center mt-4">
         <h1 className="text-primary-dark-blue font-bold text-heading-4 sm:text-heading-3 md:text-heading-2">
           Create an Account
@@ -58,6 +66,7 @@ function RegisterForm() {
             type="name"
             {...register('name')}
             placeholder="Enter your name"
+            aria-describedby={errors.name ? 'nameError' : undefined}
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
           {errors.name && <div className="text-status-error-red">{errors.name.message}</div>}
@@ -72,6 +81,7 @@ function RegisterForm() {
             type="text"
             {...register('email')}
             placeholder="Enter your email"
+            aria-describedby={errors.email ? 'emailError' : undefined}
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
           {errors.email && <div className="text-status-error-red">{errors.email.message}</div>}
@@ -87,6 +97,7 @@ function RegisterForm() {
             autoComplete="off"
             {...register('password')}
             placeholder="Enter your password"
+            aria-describedby={errors.password ? 'passwordError' : undefined}
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
 
