@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Venue } from '../../../types/venues.type';
 import { useFetchVenues } from '../hooks/fetchVenues';
 import VenuesCard from './VenuesCard';
 import PageSection from '../../../shared/components/PageSection';
+import { Venue } from '../../../types/venue.type';
 
 function VenueList() {
   const { data, loading, error } = useFetchVenues();

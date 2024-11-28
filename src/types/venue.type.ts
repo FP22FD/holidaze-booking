@@ -1,3 +1,5 @@
+import { Facilities } from './facilities.types';
+import { Location } from './location.types';
 import { Media } from './media.types';
 import { Meta } from './meta.types';
 
@@ -20,23 +22,6 @@ export interface Venue {
   meta: Facilities;
   location: Location;
   _count: Count;
-}
-
-export interface Facilities {
-  wifi: boolean;
-  parking: boolean;
-  breakfast: boolean;
-  pets: boolean;
-}
-
-export interface Location {
-  address?: string;
-  city?: string;
-  zip?: string;
-  country?: string;
-  continent?: string;
-  lat?: number;
-  lng?: number;
 }
 
 export interface Count {

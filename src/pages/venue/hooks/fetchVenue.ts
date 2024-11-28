@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ErrorHandler } from '../../../shared/utils/errorHandler';
 import { API_VENUE } from '../../../shared/utils/endpoints';
-import { SingleVenue, VenueResponse } from '../../../types/venue.type';
+import { Venue, VenueResponse } from '../../../types/venue.type';
 
-export function useFetchVenue(id: string): { data: SingleVenue | null; loading: boolean; error: string } {
-  const [data, setData] = useState<SingleVenue | null>(null);
+export function useFetchVenue(id: string): { data: Venue | null; loading: boolean; error: string } {
+  const [data, setData] = useState<Venue | null>(null);
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 

@@ -1,5 +1,6 @@
+import { Facilities } from './facilities.types';
 import { Media } from './media.types';
-import { Facilities, Location } from './venue.type';
+import { Location } from './venue.type';
 
 export interface Booking {
   id: string;
