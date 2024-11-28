@@ -39,7 +39,11 @@ export const AutoCompleteSearchBar = () => {
             />
           </div>
 
-          <button onClick={handleSearchClick} className="bg-pink-gradient rounded-full p-2 ml-2 text-white relative">
+          <button
+            onClick={handleSearchClick}
+            aria-label="Search bar"
+            className="bg-pink-gradient rounded-full p-2 ml-2 text-white relative"
+          >
             <PiMagnifyingGlass size={20} />
           </button>
         </div>
@@ -58,6 +62,7 @@ export const AutoCompleteSearchBar = () => {
             <li className="absolute top-2 right-2 px-4 py-2 text-right">
               <button
                 onClick={handleCloseDropdown}
+                aria-label="Close search results"
                 className="text-body-medium text-neutral-muted hover:text-primary-dark-blue"
               >
                 <PiXBold size={20} />

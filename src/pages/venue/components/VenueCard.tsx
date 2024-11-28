@@ -129,7 +129,14 @@ function VenueCard() {
                 <p className="text-accent-pink font-extrabold text-4xl">${price}</p>
               </div>
               <div className="w-full place-self-center">
-                <Button label={'Confirm Booking'} type={'button'} variant="primary" size={'large'} fullWidth={true} />
+                <Button
+                  label="Confirm Booking"
+                  type="button"
+                  ariaLabel="Confirm booking"
+                  variant="primary"
+                  size="large"
+                  fullWidth={true}
+                />
               </div>
             </form>
           </div>
