@@ -11,9 +11,11 @@ export const Modal = ({ onClose, title, body, footer }: ModalProps) => {
   return (
     <div className="fixed inset-0 bg-typography-primary-grey bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-neutral-white p-6 rounded-lg shadow-custom w-full sm:w-auto text-end">
-        <button onClick={onClose}>
-          <PiXCircleLight className="w-8 h-8 text-typography-primary-grey" />
-        </button>
+        {onClose && (
+          <button onClick={onClose}>
+            <PiXCircleLight className="w-8 h-8 text-typography-primary-grey" />
+          </button>
+        )}
         <div className="flex justify-between items-center">
           <h2 className="text-heading-4 font-semibold">{title}</h2>
         </div>
@@ -25,7 +27,7 @@ export const Modal = ({ onClose, title, body, footer }: ModalProps) => {
 };
 
 interface ModalMessageProps {
-  onClose: () => void;
+  onClose?: () => void;
   title?: string;
   message: string;
   icon?: React.ReactNode;
