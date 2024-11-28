@@ -117,7 +117,6 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
                       </NavLink>
                     ))}
 
-                    {/* Log Out Button */}
                     <button
                       onClick={() => {
                         logOut();
@@ -143,8 +142,8 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
 
               {userType === 'guest' && (
                 <div className="flex space-x-4">
-                  <Button type="button" label="Login" to="/auth/login" variant="secondary" />
-                  <Button type="button" label="Register" to="/auth/register" variant="primary" />
+                  <Button type="button" label="Login" ariaLabel="Login" to="/auth/login" variant="secondary" />
+                  <Button type="button" label="Register" ariaLabel="Register" to="/auth/register" variant="primary" />
                 </div>
               )}
             </div>

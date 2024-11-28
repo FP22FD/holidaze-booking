@@ -34,7 +34,7 @@ function RegisterForm() {
   const onSubmit: SubmitHandler<{ name: string; email: string; password: string }> = async (data, e) => {
     e?.preventDefault();
 
-    const { success, data: userData } = await registerUser(data.name, data.email, data.password);
+    const { success, data: userData } = await registerUser(data.name, data.email, data.password, false);
 
     if (success && userData) {
       navigate('/profile');
@@ -58,7 +58,7 @@ function RegisterForm() {
 
       <div className="place-self-start w-full space-y-4 md:space-y-6 lg:space-y-8 text-body-medium sm:text-body-large">
         <div>
-          <label htmlFor="name" className="block text-typography-primary-blue">
+          <label htmlFor="name" id="name" className="block text-typography-primary-blue">
             Name
           </label>
           <input
@@ -66,14 +66,14 @@ function RegisterForm() {
             type="name"
             {...register('name')}
             placeholder="Enter your name"
-            aria-describedby={errors.name ? 'nameError' : undefined}
+            aria-labelledby="name"
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
           {errors.name && <div className="text-status-error-red">{errors.name.message}</div>}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-typography-primary-blue">
+          <label htmlFor="email" id="email" className="block text-typography-primary-blue">
             Email
           </label>
           <input
@@ -81,14 +81,14 @@ function RegisterForm() {
             type="text"
             {...register('email')}
             placeholder="Enter your email"
-            aria-describedby={errors.email ? 'emailError' : undefined}
+            aria-labelledby="email"
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
           {errors.email && <div className="text-status-error-red">{errors.email.message}</div>}
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-typography-primary-blue">
+          <label htmlFor="password" id="password" className="block text-typography-primary-blue">
             Password
           </label>
           <input
@@ -97,7 +97,7 @@ function RegisterForm() {
             autoComplete="off"
             {...register('password')}
             placeholder="Enter your password"
-            aria-describedby={errors.password ? 'passwordError' : undefined}
+            aria-labelledby="password"
             className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
           />
 
@@ -108,13 +108,13 @@ function RegisterForm() {
       {loading && <p>Loading...</p>}
       {error && <p className="text-status-error-red">{error}</p>}
 
-      <Button type="submit" label="Register" variant="default" className="w-4/5" />
+      <Button type="submit" label="Register" ariaLabel="Register" variant="default" className="w-4/5" />
 
       <div className="flex w-full space-x-6 place-content-center text-body-medium">
         <p className="text-primary-dark-blue">Already have an account?</p>
 
         <Link to={'/auth/login'}>
-          <p className="text-accent-pink font-medium">Login</p>
+          <p className="text-primary-dark-blue font-semibold">Login</p>
         </Link>
       </div>
     </form>

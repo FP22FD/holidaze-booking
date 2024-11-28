@@ -10,6 +10,8 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   to?: string;
+  icon?: JSX.Element;
+  ariaLabel: string;
 }
 
 const Button = ({
@@ -22,6 +24,7 @@ const Button = ({
   disabled = false,
   className = '',
   to,
+  ariaLabel,
 }: ButtonProps) => {
   const baseClasses = 'rounded transition-colors duration-200 font-bold';
 
@@ -50,7 +53,7 @@ const Button = ({
   }
 
   return (
-    <button type={type} onClick={onClick} className={combinedClasses} disabled={disabled}>
+    <button type={type} onClick={onClick} aria-label={ariaLabel} className={combinedClasses} disabled={disabled}>
       {label}
     </button>
   );

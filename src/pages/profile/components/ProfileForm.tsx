@@ -33,7 +33,7 @@ const validationSchema = Yup.object({
   avatarAlt: Yup.string()
     .trim()
     .required('Please enter the image description')
-    .min(8, 'Image description must be at least 4 characters'),
+    .min(4, 'Image description must be at least 4 characters'),
   bio: Yup.string().trim().required('Please enter your bio').min(8, 'Bio must be at least 8 characters'),
 }).required();
 
@@ -70,7 +70,6 @@ const ProfileForm = ({ onClose }: ProfileFormProps) => {
     if (success && updatedProfileData) {
       setProfileData(updatedProfileData);
       setIsSuccess(true);
-      console.log(isSuccess);
     }
   };
 
@@ -102,7 +101,7 @@ const ProfileForm = ({ onClose }: ProfileFormProps) => {
 
         <div className="place-self-start w-full space-y-4 md:space-y-6 lg:space-y-8 text-body-medium sm:text-body-large">
           <div>
-            <label htmlFor="avatarUrl" className="block text-typography-primary-blue">
+            <label htmlFor="avatarUrl" id="avatarUrl" className="block text-typography-primary-blue">
               Your profile image
             </label>
             <input
@@ -110,14 +109,14 @@ const ProfileForm = ({ onClose }: ProfileFormProps) => {
               type="url"
               {...register('avatarUrl')}
               placeholder="Enter the image url"
-              aria-describedby={errors.avatarUrl ? 'avatarUrlError' : undefined}
+              aria-labelledby="avatarUrl"
               className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
             />
             {errors.avatarUrl && <div className="text-status-error-red">{errors.avatarUrl.message}</div>}
           </div>
 
           <div>
-            <label htmlFor="avatarAlt" className="block text-typography-primary-blue">
+            <label htmlFor="avatarAlt" id="avatarAlt" className="block text-typography-primary-blue">
               Your image name
             </label>
             <input
@@ -125,30 +124,36 @@ const ProfileForm = ({ onClose }: ProfileFormProps) => {
               type="text"
               {...register('avatarAlt')}
               placeholder="Enter your image name"
-              aria-describedby={errors.avatarAlt ? 'avatarAltError' : undefined}
+              aria-labelledby="avatarAlt"
               className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
             />
             {errors.avatarAlt && <div className="text-status-error-red">{errors.avatarAlt.message}</div>}
           </div>
 
           <div>
-            <label htmlFor="bio" className="block text-typography-primary-blue">
+            <label htmlFor="bio" id="bio" className="block text-typography-primary-blue">
               Your bio
             </label>
-            <input
+            <textarea
               id="bio"
-              type="text"
               {...register('bio')}
               placeholder="Enter your bio"
-              aria-describedby={errors.bio ? 'bioError' : undefined}
+              aria-labelledby="bio"
               className="w-full border rounded-md p-2 mt-1 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-            />
+            ></textarea>
 
             {errors.bio && <div className="text-status-error-red">{errors.bio.message}</div>}
           </div>
 
           <div className="flex space-x-8 place-self-center">
-            <Button type="submit" label="Update" size="medium" variant="primary" disabled={loading} />
+            <Button
+              type="submit"
+              label="Update"
+              ariaLabel="Update"
+              size="medium"
+              variant="primary"
+              disabled={loading}
+            />
           </div>
         </div>
       </form>

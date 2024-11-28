@@ -92,6 +92,7 @@ function ProfilePage() {
                   <Button
                     type="button"
                     label="Edit profile"
+                    ariaLabel="Edit profile"
                     size="medium"
                     variant="secondary"
                     onClick={() => setIsEditing(true)}

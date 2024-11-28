@@ -1,9 +1,10 @@
 import { PiImageDuotone, PiMapPinFill } from 'react-icons/pi';
 import StarRating from '../../../shared/components/StarRating';
-import { Venue } from '../../../types/venues.type';
+// import { Venue } from '../../../types/venues.type';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SkeletonVenuesCard } from './SkeletonVenuesCard';
+import { Venue } from '../../../types/venue.type';
 
 type CardProps = {
   data?: Venue;
@@ -30,7 +31,7 @@ function VenuesCard({ data, loading }: CardProps) {
 
   return (
     <div className="sm:max-w-sm rounded-lg border border-neutral-default bg-neutral-white shadow p-4" key={data?.id}>
-      <Link to={`/venues/${data?.id}`}>
+      <Link aria-label={`View details for ${data?.name || 'this venue'}`} to={`/venues/${data?.id}`}>
         {imageError || !imageUrl ? (
           <PiImageDuotone className="w-full h-48 object-cover text-neutral-default" />
         ) : (
@@ -38,7 +39,7 @@ function VenuesCard({ data, loading }: CardProps) {
             className="w-full object-cover h-48 rounded"
             width={500}
             src={imageUrl}
-            alt={altText}
+            alt={altText || 'Venue Image'}
             onError={handleImageError}
           />
         )}
