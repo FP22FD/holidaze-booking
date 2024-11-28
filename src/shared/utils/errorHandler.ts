@@ -19,7 +19,7 @@ export class ErrorHandler {
       errorMessage = data.errors[0].message;
     } else if (this._response.status === 401) {
       // 401 - Unauthorized
-      errorMessage = 'Invalid username or password or you do not have an account yet!';
+      errorMessage = 'Invalid authentication credentials!';
     } else if (this._response.status === 404) {
       // 404 - Not Found
       errorMessage = 'The requested resource was not found!';
