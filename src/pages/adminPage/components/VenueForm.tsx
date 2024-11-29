@@ -8,6 +8,8 @@ import { ModalMessage } from '../../../shared/components/Modal';
 import { PiCheckCircleFill } from 'react-icons/pi';
 import { EditVenueRequest, useCreateVenue } from '../hooks/useCreateVenue';
 import { Venue } from '../../../types/venue.type';
+import VenueFormContent from './VenueFormContent';
+import { validateUrl } from '../../../shared/utils/validationURL';
 
 interface Props {
   editMode: 'edit' | 'create';
@@ -15,7 +17,7 @@ interface Props {
   onClose: () => void;
 }
 
-interface VenueForm {
+export interface VenueForm {
   name: string;
   description: string;
   imageUrl: string;
@@ -29,22 +31,12 @@ interface VenueForm {
   pets: boolean;
 }
 
-const validateUrl = async (url: string) => {
-  try {
-    const response = await fetch(url, { method: 'HEAD' });
-    if (!response.ok) {
-      return new Yup.ValidationError('The URL is not publicly accessible.', null, 'imageUrl');
-    }
-    return true;
-  } catch {
-    return new Yup.ValidationError('The URL is not valid or accessible.', null, 'imageUrl');
-  }
-};
-
 const validationSchema = Yup.object({
   name: Yup.string().trim().required('Please enter the venue name').min(3, 'Venue name must be at least 3 characters'),
   rating: Yup.number()
     .required('Please enter the venue rating')
+    .typeError('Rating must be a number')
+    .integer('Rating must be a whole number')
     .min(1, 'Rating must be at least 1')
     .max(5, 'Rating must be at most 5'),
   imageUrl: Yup.string()
@@ -58,16 +50,20 @@ const validationSchema = Yup.object({
     .min(4, 'Image description must be at least 4 characters'),
   price: Yup.number()
     .required('Please enter the venue price')
+    .typeError('Price must be a number')
     .min(1, 'Price must be at least 1')
     .max(10000, 'Price must be at most 10000'),
   maxGuests: Yup.number()
     .required('Please enter the max maxGuests')
+    .typeError('MaxGuests must be a number')
+    .integer('MaxGuests must be a whole number')
     .min(1, 'maxGuests must be at least 1')
-    .max(100, 'maxGuests must be at most 100'),
+    .max(100, 'MaxGuests must be at most 100'),
   description: Yup.string()
     .trim()
     .required('Please enter venue description')
-    .min(8, 'description must be at least 8 characters'),
+    .min(8, 'Description must be at least 8 characters')
+    .max(246, 'Description must be at most 246 characters'),
   wifi: Yup.boolean().required(),
   parking: Yup.boolean().required(),
   breakfast: Yup.boolean().required(),
@@ -162,217 +158,36 @@ const VenueForm = ({ editMode, venue, onClose }: Props) => {
       )}
 
       <form
-        className="bg-neutral-white border w-full rounded-lg px-6 py-4"
+        className="bg-neutral-white lg:border w-full rounded-lg p-2 md:p-4 lg:mt-4"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
         {formError && <div className="text-status-error-red text-center my-4">{formError}</div>}
 
-        <div className="place-self-start text-body-medium sm:text-body-medium w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-start mb-2">
-            <div className="w-full">
-              <label htmlFor="name" id="name" className="block text-typography-primary-blue">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                {...register('name')}
-                placeholder="Enter venue name"
-                aria-labelledby="name"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-              />
+        <VenueFormContent errors={errors} register={register} />
 
-              {errors.name && <div className="text-status-error-red">{errors.name.message}</div>}
-            </div>
+        <div className="flex mt-4 md:mt-6 place-self-center">
+          {editMode === 'create' && (
+            <Button
+              type="submit"
+              label="Create Venue"
+              ariaLabel="Create Venue"
+              size="medium"
+              variant="primary"
+              disabled={loading}
+            />
+          )}
 
-            <div>
-              <label htmlFor="rating" id="rating" className="block text-typography-primary-blue">
-                Rating
-              </label>
-              <input
-                id="rating"
-                type="number"
-                min="1"
-                max="5"
-                {...register('rating')}
-                placeholder="Enter rating number"
-                aria-labelledby="rating"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-              />
-
-              {errors.rating && <div className="text-status-error-red">{errors.rating.message}</div>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-start mb-2">
-            <div className="w-full">
-              <label htmlFor="imageUrl" id="imageUrl" className="block text-typography-primary-blue">
-                Image url
-              </label>
-              <input
-                id="imageUrl"
-                type="url"
-                {...register('imageUrl')}
-                placeholder="Enter image url"
-                aria-labelledby="imageUrl"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-              />
-              {errors.imageUrl && <div className="text-status-error-red">{errors.imageUrl.message}</div>}
-            </div>
-
-            <div>
-              <label htmlFor="imageAlt" id="imageAlt" className="block text-typography-primary-blue">
-                Image Alt
-              </label>
-              <input
-                id="imageAlt"
-                type="text"
-                {...register('imageAlt')}
-                placeholder="Enter image name"
-                aria-labelledby="imageAlt"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-              />
-              {errors.imageAlt && <div className="text-status-error-red">{errors.imageAlt.message}</div>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-start mb-2">
-            <div className="w-full">
-              <label htmlFor="price" id="price" className="block text-typography-primary-blue">
-                Price
-              </label>
-              <input
-                id="price"
-                min="1"
-                max="10000"
-                type="number"
-                {...register('price')}
-                placeholder="Enter venue price"
-                aria-labelledby="price"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-              />
-              {errors.price && <div className="text-status-error-red">{errors.price.message}</div>}
-            </div>
-
-            <div>
-              <label htmlFor="maxGuests" id="maxGuests" className="block text-typography-primary-blue">
-                maxGuests
-              </label>
-              <input
-                id="maxGuests"
-                min="1"
-                max="100"
-                type="number"
-                {...register('maxGuests')}
-                placeholder="Enter max maxGuests"
-                aria-labelledby="maxGuests"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-              />
-              {errors.maxGuests && <div className="text-status-error-red">{errors.maxGuests.message}</div>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 text-start text-body-small border rounded-md py-3 px-1 my-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:gap-4">
-              <div className="flex place-items-center gap-1 md:gap-2">
-                <input
-                  id="wifi"
-                  type="checkbox"
-                  value="1"
-                  {...register('wifi')}
-                  aria-labelledby="wifi"
-                  className="w-3 h-3 md:w-4 md:h-4 border rounded-full appearance-none checked:bg-primary-dark-blue checked:border-none focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-                />
-                <label htmlFor="wifi" id="wifi" className="block text-typography-primary-blue">
-                  WiFi
-                </label>
-              </div>
-
-              <div className="flex place-items-center gap-1 md:gap-2">
-                <input
-                  id="parking"
-                  type="checkbox"
-                  value="1"
-                  {...register('parking')}
-                  aria-labelledby="parking"
-                  className="w-3 h-3 md:w-4 md:h-4 border rounded-full appearance-none checked:bg-primary-dark-blue checked:border-none focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-                />
-                <label htmlFor="parking" id="parking" className="block text-typography-primary-blue">
-                  Parking
-                </label>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:gap-4">
-              <div className="flex place-items-center gap-1 md:gap-2">
-                <input
-                  id="pets"
-                  type="checkbox"
-                  value="1"
-                  {...register('pets')}
-                  aria-labelledby="pets"
-                  className="w-3 h-3 md:w-4 md:h-4 border rounded-full appearance-none checked:bg-primary-dark-blue checked:border-none focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-                />
-                <label htmlFor="pets" id="pets" className="block text-typography-primary-blue">
-                  Pets
-                </label>
-              </div>
-
-              <div className="flex place-items-center gap-1 md:gap-2">
-                <input
-                  id="breakfast"
-                  type="checkbox"
-                  value="1"
-                  {...register('breakfast')}
-                  aria-labelledby="breakfast"
-                  className="w-3 h-3 md:w-4 md:h-4 border rounded-full appearance-none checked:bg-primary-dark-blue checked:border-none focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-                />
-                <label htmlFor="breakfast" id="breakfast" className="block text-typography-primary-blue">
-                  Breakfast
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="description" id="description" className="block text-typography-primary-blue text-start">
-              Description
-            </label>
-            <textarea
-              id="description"
-              {...register('description')}
-              placeholder="Enter description"
-              aria-labelledby="description"
-              className="w-full border rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-offset-primary-light-blue"
-            ></textarea>
-
-            {errors.description && <div className="text-status-error-red text-start">{errors.description.message}</div>}
-          </div>
-
-          <div className="flex mt-6 place-self-center">
-            {editMode === 'create' && (
-              <Button
-                type="submit"
-                label="Create Venue"
-                ariaLabel="Create Venue"
-                size="medium"
-                variant="primary"
-                disabled={loading}
-              />
-            )}
-
-            {editMode === 'edit' && (
-              <Button
-                type="submit"
-                label="Edit Venue"
-                ariaLabel="Edit Venue"
-                size="medium"
-                variant="primary"
-                disabled={loading}
-              />
-            )}
-          </div>
+          {editMode === 'edit' && (
+            <Button
+              type="submit"
+              label="Edit Venue"
+              ariaLabel="Edit Venue"
+              size="medium"
+              variant="primary"
+              disabled={loading}
+            />
+          )}
         </div>
       </form>
     </>
