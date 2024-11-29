@@ -2,9 +2,9 @@ import PageSection from '../../../shared/components/PageSection';
 import Spinner from '../../../shared/components/Spinner';
 import { usePersistContext } from '../../../store/usePersistContext';
 import { useVenueManagement } from '../hooks/useDashboard';
-import DashboardCards from './DashboardCards';
-import ManageVenues from './ManageVenues';
-import VenueBookings from './VenueBookings';
+import StatOverviewCards from './DashboardOverviewSection';
+import ManageVenues from './DashboardVenueSection';
+import VenueBookings from './DashboardBookingSection';
 
 function Dashboard() {
   const { requireUserLevel, profileData } = usePersistContext();
@@ -37,8 +37,8 @@ function Dashboard() {
       searchBar={false}
     >
       <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 py-2">
-        <div className="w-full space-y-8 border rounded-lg pb-10">
-          <DashboardCards stats={stats} />
+        <div className="w-full flex flex-col gap-8 border rounded-lg pb-10">
+          <StatOverviewCards stats={stats} />
           <ManageVenues venues={venuesData ?? []} onRefresh={() => loadVenues()} />
           <VenueBookings venues={venuesData ?? []} />
         </div>
