@@ -28,7 +28,10 @@ const VenueBookings = ({ venues }: Props) => {
         {venue.bookings
           .sort((v1, v2) => new Date(v2.dateFrom).valueOf() - new Date(v1.dateFrom).valueOf())
           .map((booking) => (
-            <div key={booking.id} className="bg-white rounded-lg p-2 shadow-md hover:shadow-lg transition-shadow">
+            <div
+              key={booking.id}
+              className="bg-neutral-white rounded-lg p-2 shadow-md hover:shadow-lg transition-shadow"
+            >
               <div className="flex-col text-body-small">
                 <div className="flex-col place-self-end text-center">
                   <span>
