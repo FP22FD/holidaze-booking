@@ -10,16 +10,16 @@ interface ModalProps {
 export const Modal = ({ onClose, title, body, footer }: ModalProps) => {
   return (
     <div className="fixed inset-0 bg-typography-primary-grey bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-neutral-white p-6 rounded-lg shadow-custom w-full sm:w-auto text-end">
+      <div className="bg-neutral-white rounded-lg shadow-custom text-end w-full m-4 p-2 sm:p-6 max-w-2xl">
         {onClose && (
           <button onClick={onClose}>
             <PiXCircleLight className="w-8 h-8 text-typography-primary-grey" />
           </button>
         )}
         <div className="flex justify-between items-center">
-          <h2 className="text-heading-4 font-semibold">{title}</h2>
+          <h2 className="font-semibold text-heading-6 sm:text-heading-4">{title}</h2>
         </div>
-        <div className="flex flex-col items-center space-y-6 mt-4">{body}</div>
+        <div className="flex flex-col items-center">{body}</div>
         <div className="mt-6">{footer}</div>
       </div>
     </div>
