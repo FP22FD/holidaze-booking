@@ -15,7 +15,7 @@ function VenueCard() {
   const { media, location, name, description, rating, maxGuests, price, meta } = data || {};
   const imageUrl = media?.length ? media[0].url : '';
   const altText = media?.length ? media[0].alt : 'Venue Image';
-  const locationCountry = location?.country || 'Norway';
+  const locationCountry = location?.country || 'Location unavailable';
   const reviews = 0;
 
   return (
