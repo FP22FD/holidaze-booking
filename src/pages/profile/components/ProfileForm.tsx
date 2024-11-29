@@ -7,22 +7,11 @@ import { usePersistContext } from '../../../store/usePersistContext';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
 import { useState } from 'react';
 import { ModalMessage } from '../../../shared/components/Modal';
+import { validateUrl } from '../../../shared/utils/validationURL';
 
 interface ProfileFormProps {
   onClose: () => void;
 }
-
-const validateUrl = async (url: string) => {
-  try {
-    const response = await fetch(url, { method: 'HEAD' });
-    if (!response.ok) {
-      return new Yup.ValidationError('The URL is not publicly accessible.', null, 'avatarUrl');
-    }
-    return true;
-  } catch {
-    return new Yup.ValidationError('The URL is not valid or accessible.', null, 'avatarUrl');
-  }
-};
 
 const validationSchema = Yup.object({
   avatarUrl: Yup.string()
