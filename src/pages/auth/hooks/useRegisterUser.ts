@@ -11,6 +11,7 @@ export function useRegisterUser() {
     name: string,
     email: string,
     password: string,
+    manager: boolean,
   ): Promise<{ success: boolean; data: null | UserData }> {
     try {
       setLoading(true);
@@ -24,6 +25,7 @@ export function useRegisterUser() {
           name,
           email,
           password,
+          venueManager: manager,
         }),
       });
 
