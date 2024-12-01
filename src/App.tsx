@@ -43,6 +43,10 @@ function App() {
           element: <AuthPage />,
         },
         {
+          path: '/auth/register/admin',
+          element: <AuthPage />,
+        },
+        {
           path: '/profile',
           element: <Profile />,
         },
