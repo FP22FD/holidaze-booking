@@ -6,7 +6,7 @@ interface ButtonProps {
   type: 'button' | 'submit' | 'reset';
   variant?: 'primary' | 'secondary' | 'default';
   size?: 'small' | 'medium' | 'large';
-  fullWidth?: boolean; // New prop for full width
+  fullWidth?: boolean;
   disabled?: boolean;
   className?: string;
   to?: string;
@@ -20,7 +20,7 @@ const Button = ({
   type,
   variant = 'primary',
   size = 'medium',
-  fullWidth = false, // Default is not full width
+  fullWidth = false,
   disabled = false,
   className = '',
   to,
@@ -53,7 +53,14 @@ const Button = ({
   }
 
   return (
-    <button type={type} onClick={onClick} aria-label={ariaLabel} className={combinedClasses} disabled={disabled}>
+    <button
+      role="button"
+      type={type}
+      onClick={onClick}
+      aria-label={ariaLabel}
+      className={combinedClasses}
+      disabled={disabled}
+    >
       {label}
     </button>
   );
