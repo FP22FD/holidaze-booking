@@ -24,7 +24,11 @@ const UpcomingBookings = ({ upcomingBookings }: Props) => {
     <div className="p-2">
       <h2 className="text-primary-dark-blue text-heading-6 mb-6">Upcoming Bookings</h2>
 
-      {upcomingBookings.length === 0 && <p className="text-primary- pt-6">You don't have any upcoming bookings.</p>}
+      {upcomingBookings.length === 0 && (
+        <p className="text-typography-primary-grey text-sm text-center pt-6">
+          You don't have any upcoming bookings yet.
+        </p>
+      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {upcomingBookings.map((booking: Booking) => (
