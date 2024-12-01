@@ -82,9 +82,7 @@ function ProfilePage() {
               </div>
             </div>
 
-            <div className="text-typography-primary-dark mb-6">
-              {bio || 'Bio not available yet. Update your profile to add a bio.'}
-            </div>
+            <div className="text-typography-primary-dark mb-6">{bio || 'Update your profile to add a bio.'}</div>
 
             <div className="place-self-end">
               {!isEditing && (
