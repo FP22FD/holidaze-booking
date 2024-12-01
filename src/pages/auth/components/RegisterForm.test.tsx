@@ -51,7 +51,7 @@ describe('RegisterForm', async () => {
     // Check for error messages
     await expect.element(screen.getByText(/Please enter your name/i)).toBeVisible();
     await expect.element(screen.getByText(/Please enter your email address/i)).toBeVisible();
-    await expect.element(screen.getByText(/Enter your password/i)).toBeVisible();
+    await expect.element(screen.getByText(/Please enter your password/i)).toBeVisible();
   });
 
   test('validates name, email and password format', async () => {
@@ -71,7 +71,7 @@ describe('RegisterForm', async () => {
 
     await screen.getByRole('button', { name: /register/i }).click();
 
-    await expect.element(screen.getByText('Your first name should be at least 3 characters')).toBeVisible();
+    await expect.element(screen.getByText('Your name should be at least 3 characters')).toBeVisible();
     await expect.element(screen.getByText('Please enter a valid email address')).toBeVisible();
     await expect.element(screen.getByText('Password must be at least 8 characters')).toBeVisible();
   });
@@ -103,7 +103,7 @@ describe('RegisterForm', async () => {
     // Ensure registerUser has been called with the correct data
     await vi.waitFor(() => {
       expect(mockRegisterUser).toHaveBeenCalledTimes(1);
-      expect(mockRegisterUser).toHaveBeenCalledWith('Harry', 'harry@stud.noroff.no', '12345678');
+      expect(mockRegisterUser).toHaveBeenCalledWith('Harry', 'harry@stud.noroff.no', '12345678', false);
     });
   });
 
