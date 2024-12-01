@@ -6,6 +6,21 @@ interface Props {
 }
 
 const VenueBookings = ({ venues }: Props) => {
+  if (venues.length === 0) {
+    return (
+      <div className="p-2 mx-2">
+        <div className="flex justify-between place-items-center border-b pb-2">
+          <p className="text-primary-dark-blue font-bold">Bookings</p>
+        </div>
+        <div className="flex flex-col items-center justify-center min-h-24 mt-4">
+          <p className="text-typography-primary-grey text-sm text-center">
+            You have no bookings yet. Add a venue to start tracking bookings.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return venues.map((venue) => (
     <div key={venue.id}>
       <div className="flex justify-between p-2 place-items-center border-b mx-2">
