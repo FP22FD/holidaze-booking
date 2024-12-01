@@ -135,7 +135,7 @@ export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobilePro
 
             <div className="flex flex-col items-center space-y-4 px-6 mb-20">
               {userType !== 'manager' && (
-                <NavLink to="/list-property" className="text-primary-dark-blue hover:text-accent-pink font-bold">
+                <NavLink to="/auth/register/admin" className="text-primary-dark-blue hover:text-accent-pink font-bold">
                   List Your Property
                 </NavLink>
               )}

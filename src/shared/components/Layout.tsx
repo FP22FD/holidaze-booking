@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 function Layout() {
   const location = useLocation();
-  const isAuthPage = ['/auth/login', '/auth/register'].includes(location.pathname);
+  const isAuthPage = ['/auth/login', '/auth/register', '/auth/register/admin'].includes(location.pathname);
   const isHomePage = location.pathname === '/';
 
   return (

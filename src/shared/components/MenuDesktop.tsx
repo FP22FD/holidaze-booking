@@ -15,7 +15,7 @@ export function MenuDesktop() {
 
       <div className="hidden md:flex items-center space-x-4">
         {userType !== 'manager' && (
-          <NavLink to="/list-property" className="text-primary-dark-blue hover:text-accent-pink font-bold">
+          <NavLink to="/auth/register/admin" className="text-primary-dark-blue hover:text-accent-pink font-bold">
             List Your Property
           </NavLink>
         )}
@@ -25,7 +25,7 @@ export function MenuDesktop() {
             <>
               {
                 <div className="flex space-x-4">
-                  {<Button type="button" label="Log out" onClick={logOut} variant="secondary" />}
+                  {<Button type="button" label="Log out" onClick={logOut} variant="secondary" ariaLabel="log out" />}
                 </div>
               }
             </>
@@ -33,8 +33,8 @@ export function MenuDesktop() {
             <>
               {
                 <div className="flex space-x-4">
-                  <Button type="button" label="Login" to="/auth/login" variant="secondary" />
-                  <Button type="button" label="Register" to="/auth/register" variant="primary" />
+                  <Button type="button" label="Login" to="/auth/login" variant="secondary" ariaLabel="login" />
+                  <Button type="button" label="Register" to="/auth/register" variant="primary" ariaLabel="register" />
                 </div>
               }
             </>
