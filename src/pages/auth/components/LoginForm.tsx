@@ -11,7 +11,7 @@ const validationSchema = Yup.object({
     .trim()
     .required('Please enter your email address')
     .email('Please enter a valid email address')
-    .matches(/^[\w-.]+@stud.noroff\.no$/, 'Email must end with @stud.noroff.no'),
+    .matches(/^[\w\-.]+@stud.noroff\.no$/, 'Email must end with @stud.noroff.no'),
   password: Yup.string().trim().required('Please enter your password').min(8, 'Password must be at least 8 characters'),
 }).required();
 
@@ -43,7 +43,7 @@ function LoginForm() {
 
   return (
     <form
-      className="space-y-12 flex flex-col place-items-center rounded-b-lg px-4"
+      className="space-y-12 flex flex-col place-items-center rounded-b-lg p-6"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >

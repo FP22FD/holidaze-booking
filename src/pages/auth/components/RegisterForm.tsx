@@ -4,22 +4,34 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '../../../shared/components/Button';
 import { useRegisterUser } from '../hooks/useRegisterUser';
+import { usePersistContext } from '../../../store/usePersistContext';
+import { useLoginUser } from '../hooks/useLoginUser';
+
+interface ManagerRegisterFormInputs {
+  name: string;
+  email: string;
+  password: string;
+}
 
 const validationSchema = Yup.object({
   name: Yup.string()
     .trim()
     .required('Please enter your name')
-    .min(3, 'Your first name should be at least 3 characters'),
+    .min(3, 'Your name should be at least 3 characters')
+    .max(20, 'Your name should be at most 20 characters')
+    .matches(/^[\w]+$/, 'Name should contain only characters in the range a-z, A-Z, 0-9 and underscore.'),
   email: Yup.string()
     .trim()
     .required('Please enter your email address')
     .email('Please enter a valid email address')
-    .matches(/^[\w-.]+@stud.noroff\.no$/, 'Email must end with @stud.noroff.no'),
+    .matches(/^[\w\-.]+@stud.noroff\.no$/, 'Email must end with @stud.noroff.no'),
   password: Yup.string().trim().required('Please enter your password').min(8, 'Password must be at least 8 characters'),
 }).required();
 
 function RegisterForm() {
-  const navigate = useNavigate();
+  const { setProfileData, setAccessToken } = usePersistContext();
+  const { loading: loadingRegister, error: errorRegister, registerUser } = useRegisterUser();
+  const { loading: loadingLogin, error: errorLogin, loginUser } = useLoginUser();
 
   const {
     register,
@@ -29,21 +41,30 @@ function RegisterForm() {
     resolver: yupResolver(validationSchema),
   });
 
-  const { loading, error, registerUser } = useRegisterUser();
+  const loading = loadingRegister || loadingLogin;
+  const error = errorRegister || errorLogin;
 
-  const onSubmit: SubmitHandler<{ name: string; email: string; password: string }> = async (data, e) => {
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<ManagerRegisterFormInputs> = async (data, e) => {
     e?.preventDefault();
 
     const { success, data: userData } = await registerUser(data.name, data.email, data.password, false);
 
     if (success && userData) {
-      navigate('/profile');
+      const { success, data: userData, accessToken } = await loginUser(data.email, data.password);
+
+      if (success && userData && accessToken) {
+        setProfileData(userData);
+        setAccessToken(accessToken);
+        navigate('/profile');
+      }
     }
   };
 
   return (
     <form
-      className="space-y-8 flex flex-col place-items-center rounded-b-lg px-4"
+      className="space-y-8 flex flex-col place-items-center rounded-b-lg p-6"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >

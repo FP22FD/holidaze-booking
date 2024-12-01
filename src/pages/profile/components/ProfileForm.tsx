@@ -18,12 +18,18 @@ const validationSchema = Yup.object({
     .trim()
     .url('Please enter a valid URL for your avatar')
     .required('Please enter your avatar url')
+    .max(300, 'URL must be at most 200 characters')
     .test('check-url', 'The URL is not valid or accessible.', validateUrl),
   avatarAlt: Yup.string()
     .trim()
     .required('Please enter the image description')
-    .min(4, 'Image description must be at least 4 characters'),
-  bio: Yup.string().trim().required('Please enter your bio').min(8, 'Bio must be at least 8 characters'),
+    .min(4, 'Image description must be at least 4 characters')
+    .max(120, 'Image description must be at most 120 characters'),
+  bio: Yup.string()
+    .trim()
+    .required('Please enter your bio')
+    .min(8, 'Bio must be at least 8 characters')
+    .max(160, 'Bio must be at most 200 characters'),
 }).required();
 
 const ProfileForm = ({ onClose }: ProfileFormProps) => {
