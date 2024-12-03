@@ -18,6 +18,7 @@ const validationSchema = Yup.object({
 function LoginForm() {
   const navigate = useNavigate();
   const { setProfileData, setAccessToken } = usePersistContext();
+  const { loading, error, loginUser } = useLoginUser();
 
   const {
     register,
@@ -27,8 +28,6 @@ function LoginForm() {
     resolver: yupResolver(validationSchema),
   });
 
-  const { loading, error, loginUser } = useLoginUser();
-
   const onSubmit: SubmitHandler<{ email: string; password: string }> = async (data, e) => {
     e?.preventDefault();
 
@@ -37,7 +36,12 @@ function LoginForm() {
     if (success && userData && accessToken) {
       setProfileData(userData);
       setAccessToken(accessToken);
-      navigate('/profile');
+
+      if (userData.venueManager) {
+        navigate('/admin');
+      } else {
+        navigate('/profile');
+      }
     }
   };
 

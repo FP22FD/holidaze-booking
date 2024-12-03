@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ErrorHandler } from '../../../shared/utils/errorHandler';
-import { API_KEY, API_VENUE } from '../../../shared/utils/endpoints';
+import { API_KEY, API_VENUE_CREATE } from '../../../shared/utils/endpoints';
 import { Venue, VenueResponse } from '../../../types/venue.type';
 
 export type EditVenueRequest = Pick<
@@ -20,7 +20,7 @@ export function useCreateVenue(): {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(API_VENUE(''), {
+      const response = await fetch(API_VENUE_CREATE, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

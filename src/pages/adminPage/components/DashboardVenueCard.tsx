@@ -17,7 +17,7 @@ interface VenueCardProps {
 
 const ManagementVenueCard = ({ venues, setInUpdate, setInDelete, handleCreateVenue }: VenueCardProps) => (
   <>
-    <div className="space-y-6 border flex w-full">
+    <div className="space-y-6 flex w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-start rounded-md p-2 gap-6">
         {venues.map((venue) => (
           <div

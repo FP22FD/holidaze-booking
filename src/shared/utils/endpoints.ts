@@ -17,6 +17,7 @@ export const API_VENUES = new URL(`${API_BASE_URL}/holidaze/venues`);
 export const API_VENUES_SEARCH = (query: string) =>
   new URL(`${API_BASE_URL}/holidaze/venues/search?limit=10&sort=name&sortOrder=asc&q=${query}`);
 export const API_VENUE = (id: string) => new URL(`${API_BASE_URL}/holidaze/venues/${id}/?_owner=true&_bookings=true`);
+export const API_VENUE_CREATE = new URL(`${API_BASE_URL}/holidaze/venues`);
 export const API_BOOKING = new URL(`${API_BASE_URL}/holidaze/bookings`);
 
 // Profile data endpoints

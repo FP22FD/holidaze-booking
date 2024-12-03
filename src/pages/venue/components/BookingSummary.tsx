@@ -51,7 +51,7 @@ function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBo
         <Modal
           onClose={() => setIsSuccess(false)}
           body={
-            <div className="text-primary-dark-blue place-items-center text-center mb-8">
+            <div className="text-primary-dark-blue font-bold place-items-center text-center mb-8">
               <PiCheckCircleFill className="w-16 h-16 text-primary-dark-blue mb-6" />
               Thank you for booking <span className="text-primary-dark-blue">{venue.name}!</span>
             </div>
@@ -60,11 +60,11 @@ function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBo
             <div className="flex justify-center text-typography-primary-grey text-body-small sm:text-body-medium">
               <div className="flex justify-center gap-4 md:gap-8 py-4 sm:py-6 mt text-nowrap">
                 <Link to={'/'}>
-                  <p className="hover:text-primary-dark-blue">Explore more venues</p>
+                  <p className="hover:text-primary-dark-blue font-semibold">Explore more venues</p>
                 </Link>
                 <div className="border-l border-typography-primary-grey h-6"></div>
                 <Link to={'/profile'}>
-                  <p className="hover:text-primary-dark-blue">Go to my profile</p>
+                  <p className="hover:text-primary-dark-blue font-semibold">Go to my profile</p>
                 </Link>
               </div>
             </div>

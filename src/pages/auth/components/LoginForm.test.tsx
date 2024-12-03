@@ -49,7 +49,7 @@ describe('LoginForm', async () => {
 
     // Check for error messages
     await expect.element(screen.getByText(/Please enter your email address/i)).toBeVisible();
-    await expect.element(screen.getByText(/Enter your password/i)).toBeVisible();
+    await expect.element(screen.getByText(/Please enter your password/i)).toBeVisible();
   });
 
   test('validates email and password format', async () => {

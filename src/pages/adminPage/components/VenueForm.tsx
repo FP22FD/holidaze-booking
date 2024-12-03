@@ -74,7 +74,8 @@ const VenueForm = ({ editMode, venue, onClose }: Props) => {
   const { loading: loadingCreate, error: errorCreate, createVenue } = useCreateVenue();
   const { loading: loadingUpdate, error: errorUpdate, updateVenue } = useUpdateVenue();
   const [formError, setFormError] = useState<string>('');
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isCreateSuccess, setIsCreateSuccess] = useState<boolean>(false);
+  const [isEditSuccess, setIsEditSuccess] = useState<boolean>(false);
 
   const loading = loadingCreate || loadingUpdate;
   const error = errorCreate || errorUpdate;
@@ -131,14 +132,14 @@ const VenueForm = ({ editMode, venue, onClose }: Props) => {
     if (editMode === 'create') {
       const { success } = await createVenue(request);
       if (success) {
-        setIsSuccess(true);
+        setIsCreateSuccess(true);
       } else {
         setFormError('Failed to create venue. Please try again later.');
       }
     } else if (editMode === 'edit' && venue) {
       const { success } = await updateVenue(venue.id, request);
       if (success) {
-        setIsSuccess(true);
+        setIsEditSuccess(true);
       } else {
         setFormError('Failed to update venue. Please try again later.');
       }
@@ -149,10 +150,18 @@ const VenueForm = ({ editMode, venue, onClose }: Props) => {
     <>
       {error && <div className="text-status-error-red text-center my-4">{error}</div>}
 
-      {isSuccess && (
+      {isEditSuccess && (
         <ModalMessage
           onClose={onClose}
           message="You have successfully updated your venue!"
+          icon={<PiCheckCircleFill className="w-16 h-16 text-primary-dark-blue" />}
+        />
+      )}
+
+      {isCreateSuccess && (
+        <ModalMessage
+          onClose={onClose}
+          message="You have successfully created a new venue!"
           icon={<PiCheckCircleFill className="w-16 h-16 text-primary-dark-blue" />}
         />
       )}

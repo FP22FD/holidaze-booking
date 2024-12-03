@@ -33,7 +33,7 @@ export const VenueFormContent = ({ errors, register }: VenueFormContentPros) => 
           </label>
           <input
             id="rating"
-            type="text"
+            type="number"
             {...register('rating')}
             placeholder="Enter rating number"
             aria-labelledby="rating"
@@ -83,7 +83,7 @@ export const VenueFormContent = ({ errors, register }: VenueFormContentPros) => 
           </label>
           <input
             id="price"
-            type="text"
+            type="number"
             {...register('price')}
             placeholder="Enter venue price"
             aria-labelledby="price"
@@ -98,7 +98,7 @@ export const VenueFormContent = ({ errors, register }: VenueFormContentPros) => 
           </label>
           <input
             id="maxGuests"
-            type="text"
+            type="number"
             {...register('maxGuests')}
             placeholder="Enter max maxGuests"
             aria-labelledby="maxGuests"
