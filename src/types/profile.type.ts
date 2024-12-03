@@ -14,20 +14,9 @@ export interface ProfileData {
   avatar: Avatar;
   banner: Banner;
   venueManager: boolean;
-  // _count: Count;
 }
-
-// export interface Avatar {
-//   url: string;
-//   alt: string;
-// }
 
 export interface Banner {
   url: string;
   alt: string;
 }
-
-// export interface Count {
-//   venues: number;
-//   bookings: number;
-// }

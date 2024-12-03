@@ -3,6 +3,8 @@ import { Facilities } from '../../../types/facilities.types';
 import { Media } from '../../../types/media.types';
 import { Meta } from '../../../types/meta.types';
 import { Banner } from '../../../types/profile.type';
+import { Location } from '../../../types/location.types';
+import { Owner } from '../../../types/owner.types';
 
 export interface DashboardResponse {
   data: AdminVenueData[];
@@ -24,24 +26,6 @@ export interface AdminVenueData {
   rating: number;
   updated: string;
   _count: Count;
-}
-
-export interface Location {
-  address?: string;
-  city?: string;
-  zip?: string;
-  country?: string;
-  continent?: string;
-  lat?: number;
-  lng?: number;
-}
-
-export interface Owner {
-  name: string;
-  email: string;
-  bio: string;
-  avatar: Avatar;
-  banner: Banner;
 }
 
 export interface Booking {
