@@ -1,3 +1,43 @@
+@import '@demark-pro/react-booking-calendar/dist/react-booking-calendar.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.calendar__month-content span {
+  color: #101935 !important;
+}
+
+.calendar__week-content {
+  color: #101935 !important;
+}
+
+.calendar__week-content[data-weekend='true'] {
+  color: #101935 !important;
+  font-weight: 600;
+}
+
+.calendar__day-content:not([data-reserved='true']):not([data-past='true']):not([data-selected='true']) {
+  color: #101935 !important;
+}
+
+.calendar__day-content[data-selected='true'] {
+  color: #ffffff !important;
+}
+
+.calendar__day-today {
+  color: #101935 !important;
+  border: 1px solid #101935 !important;
+}
+
+.calendar__day-selection[data-selected='true'] {
+  background-color: #101935 !important;
+}
+
+.calendar__month-arrow-back {
+  color: #101935 !important;
+}
+
+.calendar__month-arrow-next {
+  color: #101935 !important;
+}
