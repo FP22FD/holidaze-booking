@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { AllVenuesResponse, Venue } from '../../../types/venues.type';
+import { AllVenuesResponse } from '../../../types/venues.type';
 import { ErrorHandler } from '../../../shared/utils/errorHandler';
 import { API_VENUES_SEARCH } from '../../../shared/utils/endpoints';
+import { Venue } from '../../../types/venue.type';
 
 export function useSearchVenues(query: string) {
   const [data, setData] = useState<Venue[]>([]);
