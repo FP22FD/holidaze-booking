@@ -3,18 +3,16 @@ import StarRating from '../../../shared/components/StarRating';
 // import { Venue } from '../../../types/venues.type';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SkeletonVenuesCard } from './SkeletonVenuesCard';
 import { Venue } from '../../../types/venue.type';
 
 type CardProps = {
-  data?: Venue;
-  loading: boolean;
+  data: Venue;
 };
 
-function VenuesCard({ data, loading }: CardProps) {
+function VenuesCard({ data }: CardProps) {
   const [imageError, setImageError] = useState<boolean>(false);
 
-  const { media, location, name, rating, price } = data || {};
+  const { media, location, name, rating, price } = data;
 
   const imageUrl = media?.length ? media[0].url : '';
   const altText = media?.length ? media[0].alt : 'Venue Image';
@@ -24,10 +22,6 @@ function VenuesCard({ data, loading }: CardProps) {
   const handleImageError = () => {
     setImageError(true);
   };
-
-  if (loading) {
-    return <SkeletonVenuesCard />;
-  }
 
   return (
     <div className="sm:max-w-sm rounded-lg border border-neutral-default bg-neutral-white shadow p-4" key={data?.id}>

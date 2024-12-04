@@ -24,8 +24,8 @@ function VenueCard() {
   return (
     <PageSection
       title="Venue Details"
-      seoTitle="Venues | Holidaze Booking"
-      seoDescription="Browse our wide range of venues and find what you're looking for!"
+      seoTitle={`Venue ${venue.name} | Holidaze Booking`}
+      seoDescription={`Book the holiday of your dreams at ${venue.name} !`}
       searchBar={false}
       error={error}
     >

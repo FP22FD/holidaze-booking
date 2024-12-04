@@ -30,13 +30,13 @@ function Dashboard() {
 
   return (
     <PageSection
-      title="Dashboard"
-      seoTitle="Dashboard | Holidaze Booking"
-      seoDescription="Browse our wide range of venues and find what you're looking for!"
+      title="Manager Dashboard"
+      seoTitle="Manager Dashboard | Holidaze Booking"
+      seoDescription="Manage your venues and bookings made from your customer"
       searchBar={false}
     >
-      <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 py-2">
-        <div className="w-full flex flex-col gap-8 border rounded-lg pb-10">
+      <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 pb-2">
+        <div className="w-full flex flex-col gap-8 rounded-lg pb-10">
           <StatOverviewCards stats={stats} />
           <ManageVenues venues={venuesData ?? []} onRefresh={() => loadVenues()} />
           <VenueBookings venues={venuesData ?? []} />

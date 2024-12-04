@@ -1,9 +1,9 @@
-import VenueCard from './components/VenueCard';
+import VenueDetail from './components/VenueDetail';
 
 const Venue = () => {
   return (
     <>
-      <VenueCard />
+      <VenueDetail />
     </>
   );
 };

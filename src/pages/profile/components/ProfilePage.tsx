@@ -37,9 +37,9 @@ function ProfilePage() {
 
   return (
     <PageSection
-      title="Profile"
-      seoTitle="Profile | Holidaze Booking"
-      seoDescription="Browse our wide range of venues and find what you're looking for!"
+      title="Your profile"
+      seoTitle="Your profile | Holidaze Booking"
+      seoDescription="Your profile information and booking history"
       searchBar={false}
     >
       {loading && (
@@ -51,7 +51,7 @@ function ProfilePage() {
 
       <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 rounded-lg py-2">
         <div className="w-full md:w-1/3 flex flex-col h-fit">
-          <div className="p-2 bg-white border my-2 rounded-lg">
+          <div className="p-2 bg-white border mb-2 rounded-lg">
             <div className="avatar-section mb-6 ">
               <div className="flex items-center space-x-2">
                 <div className="w-24 h-24">
