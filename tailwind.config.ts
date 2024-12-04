@@ -49,45 +49,45 @@ module.exports = {
       colors: {
         // Main brand color
         main: {
-          blue: '#215891', // Use for headers, primary buttons, navigation bar, and active states
+          blue: '#215891', // Use for headers, primary buttons, navigation bar, and active states *
         },
         primary: {
-          'dark-blue': '#101935', // Use for hero section background, footer, and secondary buttons
-          'light-blue': '#36A5E5', // Use for hover states, borders, and shadows on light sections
+          'dark-blue': '#101935', // Use for hero section background, footer, and secondary buttons *
+          'light-blue': '#36A5E5', // Use for hover states, borders, and shadows on light sections *
         },
         accent: {
-          pink: '#ff1464', // Use for small accents, badges, icons
+          pink: '#ff1464', // Use for small accents, badges, icons *
           pinkLight: 'rgba(254, 242, 242, 1)', // Use for hover effects, and alternative backgrounds
-          peach: '#FFEEA9', // Use for background highlights (testimonials, special offers) and card backgrounds
+          // peach: '#FFEEA9', // Use for background highlights (testimonials, special offers) and card backgrounds
         },
         typography: {
           primary: {
-            grey: '#5A5E60', // Use for body text, paragraph text, and form labels
-            white: '#FFFFFF', // Use for background page, cards, containers and also for text on dark backgrounds and buttons
-            blue: '#153A5B', // Use for body text, paragraph text, and form labels
+            grey: '#5A5E60', // Use for body text, paragraph text, form labels, and modal backgrounds *
+            white: '#FFFFFF', // Use for background page, cards, containers and also for text on dark backgrounds and buttons *
+            blue: '#153A5B', // Use for body text, paragraph text, and form labels *
           },
           secondary: {
-            black: '#212427', // Use for headings, subheadings, and strong contrast text
+            black: '#212427', // Use for headings, subheadings, and strong contrast text *
           },
         },
         neutral: {
-          white: '#FFFFFF', // Use white color for backgrounds, cards, containers, and text on dark backgrounds
+          white: '#FFFFFF', // Use white color for backgrounds, cards, containers, and text on dark backgrounds *
           default: '#E5E7EB', // Use grey color for borders, dividers, and input field backgrounds
           lighter: '#F9FAFB', // Use grey color for light section backgrounds and hover states
           light: '#E9ECEF', // Use grey color for light section backgrounds and hover states
           dark: '#ABB5BE', // Use grey color for secondary text or disabled elements
         },
         star: {
-          bronze: '#C5832B', // Use for star icons in reviews or rating systems
+          bronze: '#C5832B', // Use for star icons in reviews or rating systems *
         },
         status: {
           success: {
-            green: '#4D7C0F', // Use for success messages or positive action icons
-            'green-bg': '#FFFFFF', // Use for success notification backgrounds
+            green: '#4D7C0F', // Use for success messages or positive action icons *
+            'green-bg': '#D1E7DD', // Use for success notification backgrounds *
           },
           error: {
-            red: '#B91C1C', // Use for error messages, form validation errors, and warning elements
-            'red-bg': '#F8D7DA', // Use for error notification backgrounds
+            red: '#B91C1C', // Use for error messages, form validation errors, and warning elements *
+            'red-bg': '#F8D7DA', // Use for error notification backgrounds *
           },
         },
       },
@@ -114,25 +114,25 @@ module.exports = {
           },
           {
             fontFamily: 'Poppins',
-            fontStyle: 'medium',
+            fontStyle: 'normal',
             fontWeight: '500',
             src: 'url("/src/assets/fonts/poppins/Poppins-Medium.ttf") format("TrueType")',
           },
           {
             fontFamily: 'Poppins',
-            fontStyle: 'semiBold',
+            fontStyle: 'normal',
             fontWeight: '600',
             src: 'url("/src/assets/fonts/poppins/Poppins-SemiBold.ttf") format("TrueType")',
           },
           {
             fontFamily: 'Poppins',
-            fontStyle: 'bold',
+            fontStyle: 'normal',
             fontWeight: '700',
             src: 'url("/src/assets/fonts/poppins/Poppins-Bold.ttf") format("TrueType")',
           },
           {
             fontFamily: 'Poppins',
-            fontStyle: 'extraBold',
+            fontStyle: 'normal',
             fontWeight: '800',
             src: 'url("/src/assets/fonts/poppins/Poppins-ExtraBold.ttf") format("TrueType")',
           },
@@ -144,7 +144,7 @@ module.exports = {
           },
           {
             fontFamily: 'Barlow',
-            fontStyle: 'bold',
+            fontStyle: 'normal',
             fontWeight: '700',
             src: 'url("/src/assets/fonts/barlow/Barlow-Bold.ttf") format("TrueType")',
           },
