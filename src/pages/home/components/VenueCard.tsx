@@ -1,13 +1,12 @@
 import { PiImageDuotone, PiMapPinFill } from 'react-icons/pi';
 import StarRating from '../../../shared/components/StarRating';
-// import { Venue } from '../../../types/venues.type';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Venue } from '../../../types/venue.type';
 
-type CardProps = {
+interface CardProps {
   data: Venue;
-};
+}
 
 function VenuesCard({ data }: CardProps) {
   const [imageError, setImageError] = useState<boolean>(false);

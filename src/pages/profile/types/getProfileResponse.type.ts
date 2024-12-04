@@ -1,19 +1,23 @@
 import { Avatar } from '../../../types/avatar.types';
 import { Banner } from '../../../types/banner.types';
+import { Booking } from '../../../types/booking.types';
 import { Meta } from '../../../types/meta.types';
+import { Venue } from '../../../types/venue.type';
 
-export interface UpdateProfileResponse {
-  data: ProfileData;
+export interface GetProfileResponse {
+  data: ProfileDataResponse;
   meta: Meta;
 }
 
-export interface ProfileData {
+export interface ProfileDataResponse {
+  name: string;
+  email: string;
+  bio: string;
   avatar: Avatar;
   banner: Banner;
-  bio: string;
-  email: string;
-  name: string;
   venueManager: boolean;
+  venues?: Venue[];
+  bookings: Booking[];
   _count: Count;
 }
 

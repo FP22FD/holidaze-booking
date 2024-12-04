@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ErrorHandler } from '../../../shared/utils/errorHandler';
 import { API_UPDATE_PROFILE, API_KEY } from '../../../shared/utils/endpoints';
-import { ProfileResponse } from '../types/updateProfile.type';
+import { UpdateProfileResponse } from '../types/updateProfile.type';
 import { ProfileData } from '../../../types/profile.type';
 
 export function useUpdateProfile() {
@@ -23,7 +23,7 @@ export function useUpdateProfile() {
       });
 
       if (response.ok) {
-        const profileData: ProfileResponse = await response.json();
+        const profileData: UpdateProfileResponse = await response.json();
 
         const data = profileData.data;
         return { success: true, data };

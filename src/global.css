@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* calendar UX improvements */
 .calendar__calendar-container {
   font-family: Poppins, sans-serif;
 }

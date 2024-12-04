@@ -100,7 +100,7 @@ function ProfilePage() {
             </div>
           </div>
 
-          {isEditing && <ProfileForm onClose={() => setIsEditing(false)} />}
+          {isEditing && <ProfileForm profile={profileData} onClose={() => setIsEditing(false)} />}
         </div>
         <div className="w-full md:w-2/3 border rounded-lg p-2">
           <UpcomingBookings upcomingBookings={upcomingBookings ?? []} />

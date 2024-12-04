@@ -1,10 +1,10 @@
 import { PiStarFill } from 'react-icons/pi';
 
-type RatingProps = {
+interface Props {
   rating?: number;
-};
+}
 
-const StarRating = ({ rating = 0 }: RatingProps) => {
+const StarRating = ({ rating = 0 }: Props) => {
   const maxRating = 5;
 
   const stars = [...Array(maxRating)].map((_, index) =>

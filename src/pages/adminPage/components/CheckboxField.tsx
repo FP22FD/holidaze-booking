@@ -1,13 +1,13 @@
 import { UseFormRegister } from 'react-hook-form';
-import { VenueForm } from './VenueForm';
+import { EditVenueForm } from './VenueForm';
 
-interface CheckboxFieldProps {
+interface Props {
   label: string;
-  id: keyof VenueForm;
-  register: UseFormRegister<VenueForm>;
+  id: keyof EditVenueForm;
+  register: UseFormRegister<EditVenueForm>;
 }
 
-const CheckboxField = ({ label, id, register }: CheckboxFieldProps) => (
+const CheckboxField = ({ label, id, register }: Props) => (
   <div className="flex place-items-center gap-1 md:gap-2">
     <input
       id={id}

@@ -1,10 +1,10 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import CheckboxField from './CheckboxField';
-import { VenueForm } from './VenueForm';
+import { EditVenueForm } from './VenueForm';
 
 interface VenueFormContentPros {
-  errors: FieldErrors<VenueForm>;
-  register: UseFormRegister<VenueForm>;
+  errors: FieldErrors<EditVenueForm>;
+  register: UseFormRegister<EditVenueForm>;
 }
 
 export const VenueFormContent = ({ errors, register }: VenueFormContentPros) => (

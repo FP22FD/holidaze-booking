@@ -1,4 +1,5 @@
 import { Avatar } from './avatar.types';
+import { Banner } from './banner.types';
 import { Meta } from './meta.types';
 
 /** GET single profile response. */
@@ -14,9 +15,4 @@ export interface ProfileData {
   avatar: Avatar;
   banner: Banner;
   venueManager: boolean;
-}
-
-export interface Banner {
-  url: string;
-  alt: string;
 }

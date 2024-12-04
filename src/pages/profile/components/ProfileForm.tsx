@@ -6,11 +6,19 @@ import * as Yup from 'yup';
 import { usePersistContext } from '../../../store/usePersistContext';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
 import { useState } from 'react';
-import { ModalMessage } from '../../../shared/components/Modal';
+import { ModalMessage } from '../../../shared/components/ModalMessage';
 import { validateUrl } from '../../../shared/utils/validationURL';
+import { ProfileData } from '../../../types/profile.type';
 
 interface ProfileFormProps {
+  profile: ProfileData;
   onClose: () => void;
+}
+
+interface EditProfileForm {
+  avatarUrl: string;
+  avatarAlt: string;
+  bio: string;
 }
 
 const validationSchema = Yup.object({
@@ -32,7 +40,7 @@ const validationSchema = Yup.object({
     .max(160, 'Bio must be at most 200 characters'),
 }).required();
 
-const ProfileForm = ({ onClose }: ProfileFormProps) => {
+const ProfileForm = ({ profile, onClose }: ProfileFormProps) => {
   const { profileData, setProfileData } = usePersistContext();
   const { loading, updateProfile } = useUpdateProfile();
   const [formError, setFormError] = useState<string>('');
@@ -44,9 +52,14 @@ const ProfileForm = ({ onClose }: ProfileFormProps) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
+    defaultValues: {
+      avatarUrl: profile.avatar.url,
+      avatarAlt: profile.avatar.alt,
+      bio: profile.bio,
+    },
   });
 
-  const onSubmit: SubmitHandler<{ avatarUrl: string; avatarAlt: string; bio: string }> = async (data, e) => {
+  const onSubmit: SubmitHandler<EditProfileForm> = async (data, e) => {
     e?.preventDefault();
 
     if (!profileData) return;

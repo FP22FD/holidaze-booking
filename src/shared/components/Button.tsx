@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-interface ButtonProps {
+interface Props {
   label: string;
   onClick?: () => void;
   type: 'button' | 'submit' | 'reset';
@@ -25,7 +25,7 @@ const Button = ({
   className = '',
   to,
   ariaLabel,
-}: ButtonProps) => {
+}: Props) => {
   const baseClasses = 'rounded transition-colors duration-200 font-bold';
 
   const variantClasses: { [key in 'primary' | 'secondary' | 'default']: string } = {

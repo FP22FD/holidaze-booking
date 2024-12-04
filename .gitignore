@@ -25,6 +25,7 @@ dist-ssr
 
 # Ignore vitest browser infrastructure test demo
 vitest-example/**/*
+coverage/**/*
 
 # Editor directories and files
 .vscode/*

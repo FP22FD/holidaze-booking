@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 
-interface SEOProps {
+interface Props {
   title: string;
   description: string;
 }
 
-export function SEO({ title, description }: React.PropsWithChildren<SEOProps>) {
+export function SEO({ title, description }: React.PropsWithChildren<Props>) {
   return (
     <Helmet>
       <title>{title}</title>

@@ -3,7 +3,7 @@ export interface Meta {
   isLastPage: boolean;
   currentPage: number;
   previousPage?: number;
-  nextPage: number;
+  nextPage?: number;
   pageCount: number;
   totalCount: number;
 }

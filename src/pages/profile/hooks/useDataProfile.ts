@@ -1,33 +1,9 @@
 import { API_DATA_PROFILE, API_KEY } from '../../../shared/utils/endpoints';
 import { ErrorHandler } from '../../../shared/utils/errorHandler';
 import { useEffect, useState } from 'react';
-import { Banner, ProfileData } from '../../../types/profile.type';
-import { Venue } from '../../../types/venue.type';
+import { ProfileData } from '../../../types/profile.type';
 import { Booking } from '../../../types/booking.types';
-import { Avatar } from '../../../types/avatar.types';
-import { Meta } from '../../../types/meta.types';
-
-export interface ProfileResponse {
-  data: ProfileDataResponse;
-  meta: Meta;
-}
-
-export interface ProfileDataResponse {
-  name: string;
-  email: string;
-  bio: string;
-  avatar: Avatar;
-  banner: Banner;
-  venueManager: boolean;
-  venues?: Venue[];
-  bookings: Booking[];
-  _count: Count;
-}
-
-export interface Count {
-  venues: number;
-  bookings: number;
-}
+import { Count, GetProfileResponse } from '../types/getProfileResponse.type';
 
 export function useDataProfile(name: string | undefined) {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
@@ -54,7 +30,7 @@ export function useDataProfile(name: string | undefined) {
         });
 
         if (response.ok) {
-          const profileData: ProfileResponse = await response.json();
+          const profileData: GetProfileResponse = await response.json();
 
           if (!profileController.signal.aborted) {
             const data = profileData.data;

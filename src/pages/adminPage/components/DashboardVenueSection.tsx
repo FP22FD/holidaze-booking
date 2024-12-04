@@ -6,7 +6,7 @@ import VenueForm from './VenueForm';
 import { Venue } from '../../../types/venue.type';
 import Spinner from '../../../shared/components/Spinner';
 import { useDeleteVenue } from '../hooks/useDeleteVenue';
-import ManagementVenueCard from './DashboardVenueCard';
+import DashboardVenueCard from './DashboardVenueCard';
 
 interface Props {
   venues: AdminVenueData[];
@@ -126,7 +126,7 @@ const ManageVenues = ({ venues, onRefresh }: Props) => {
         </div>
 
         <div className="gap-4 py-6 flex">
-          <ManagementVenueCard
+          <DashboardVenueCard
             venues={venues}
             setInUpdate={setInUpdate}
             setInDelete={setInDelete}

@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-import AdminRegisterForm from './components/ManagerRegisterForm';
+import ManagerRegisterForm from './components/ManagerRegisterForm';
 import logo from '/src/assets/images/logo.svg';
 
 export default function AuthPage() {
@@ -53,7 +53,7 @@ export default function AuthPage() {
         )}
 
         <div className="justify-center items-center">
-          {isAdminRegister ? <AdminRegisterForm /> : isLoginTab ? <LoginForm /> : <RegisterForm />}
+          {isAdminRegister ? <ManagerRegisterForm /> : isLoginTab ? <LoginForm /> : <RegisterForm />}
         </div>
       </div>
     </div>

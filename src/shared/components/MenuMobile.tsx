@@ -11,12 +11,12 @@ import {
 } from 'react-icons/pi';
 import { usePersistContext } from '../../store/usePersistContext';
 
-interface MenuMobileProps {
+interface Props {
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
 }
 
-export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: MenuMobileProps) {
+export function MenuMobile({ isMobileMenuOpen, toggleMobileMenu }: Props) {
   const { userType, profileData, logOut } = usePersistContext();
 
   const pageLinks = [

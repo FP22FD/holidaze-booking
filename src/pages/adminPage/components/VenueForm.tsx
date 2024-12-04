@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useUpdateVenue } from '../hooks/useUpdateVenue';
-import { ModalMessage } from '../../../shared/components/Modal';
+import { ModalMessage } from '../../../shared/components/ModalMessage';
 import { PiCheckCircleFill } from 'react-icons/pi';
 import { EditVenueRequest, useCreateVenue } from '../hooks/useCreateVenue';
 import { Venue } from '../../../types/venue.type';
@@ -17,7 +17,7 @@ interface Props {
   onClose: () => void;
 }
 
-export interface VenueForm {
+export interface EditVenueForm {
   name: string;
   description: string;
   imageUrl: string;
@@ -101,7 +101,7 @@ const VenueForm = ({ editMode, venue, onClose }: Props) => {
     },
   });
 
-  const onSubmit: SubmitHandler<VenueForm> = async (data, e) => {
+  const onSubmit: SubmitHandler<EditVenueForm> = async (data, e) => {
     e?.preventDefault();
     setFormError('');
 

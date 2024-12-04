@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { SEO } from './SEO';
 import { AutoCompleteSearchBar } from '../../pages/home/components/SeachBar';
 
-interface PageProps {
+interface Props {
   title: string;
   seoTitle: string;
   seoDescription: string;
@@ -11,7 +11,7 @@ interface PageProps {
   children: ReactNode;
 }
 
-function PageSection({ title, seoTitle, seoDescription, error, searchBar = false, children }: PageProps) {
+function PageSection({ title, seoTitle, seoDescription, error, searchBar = false, children }: Props) {
   return (
     <section className="row-start-1 col-span-12 flex flex-col items-center">
       <SEO title={seoTitle} description={seoDescription} />

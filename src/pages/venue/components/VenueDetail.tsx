@@ -2,14 +2,23 @@ import { useParams } from 'react-router-dom';
 import PageSection from '../../../shared/components/PageSection';
 import { useFetchVenue } from '../hooks/fetchVenue';
 import StarRating from '../../../shared/components/StarRating';
-import { PiCarLight, PiCoffeeLight, PiMapPinLight, PiPawPrintLight, PiWifiHighLight } from 'react-icons/pi';
+import {
+  PiCarLight,
+  PiCoffeeLight,
+  PiImageDuotone,
+  PiMapPinLight,
+  PiPawPrintLight,
+  PiWifiHighLight,
+} from 'react-icons/pi';
 import { Facility } from './Facility';
 import VenueBookingCalendar from './VenueBookingCalendar';
 import Spinner from '../../../shared/components/Spinner';
+import { useState } from 'react';
 
 function VenueCard() {
   const { id } = useParams<{ id: string }>();
   const { data: venue, error } = useFetchVenue(id || '');
+  const [imageError, setImageError] = useState<boolean>(false);
 
   if (!venue) {
     return <Spinner />;
@@ -21,6 +30,10 @@ function VenueCard() {
   const locationCountry = location?.country || 'Location unavailable';
   const reviews = 0;
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <PageSection
       title="Venue Details"
@@ -31,7 +44,16 @@ function VenueCard() {
     >
       <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 mt-2">
         <div className="w-full md:w-2/3 mb-8 md:mb-0">
-          <img className="w-full object-cover h-64 sm:h-80 lg:h-96" src={imageUrl} alt={altText || 'Product image'} />
+          {imageError || !imageUrl ? (
+            <PiImageDuotone className="w-full h-64 object-cover text-neutral-default" />
+          ) : (
+            <img
+              className="w-full object-cover h-64 sm:h-80 lg:h-96"
+              src={imageUrl}
+              alt={altText || 'Product image'}
+              onError={handleImageError}
+            />
+          )}
 
           <div className="px-2 mt-4">
             <div className="flex items-center space-x-3 text-body-medium">

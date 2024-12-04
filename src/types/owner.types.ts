@@ -1,5 +1,5 @@
 import { Avatar } from './avatar.types';
-import { Banner } from './profile.type';
+import { Banner } from './banner.types';
 
 export interface Owner {
   name: string;

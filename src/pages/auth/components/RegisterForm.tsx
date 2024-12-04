@@ -7,7 +7,7 @@ import { useRegisterUser } from '../hooks/useRegisterUser';
 import { usePersistContext } from '../../../store/usePersistContext';
 import { useLoginUser } from '../hooks/useLoginUser';
 
-interface ManagerRegisterFormInputs {
+interface RegisterUserForm {
   name: string;
   email: string;
   password: string;
@@ -46,7 +46,7 @@ function RegisterForm() {
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<ManagerRegisterFormInputs> = async (data, e) => {
+  const onSubmit: SubmitHandler<RegisterUserForm> = async (data, e) => {
     e?.preventDefault();
 
     const { success, data: userData } = await registerUser(data.name, data.email, data.password, false);
