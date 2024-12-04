@@ -45,8 +45,6 @@ function ManagerRegisterForm() {
   const error = errorRegister || errorLogin;
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const previousPath = location.state?.from || '/';
 
   const onSubmit: SubmitHandler<ManagerRegisterFormInputs> = async (data, e) => {
     e?.preventDefault();
@@ -93,9 +91,9 @@ function ManagerRegisterForm() {
             <p>Back to Home</p>
           </Link>
           <div className="border-l border-typography-primary-white h-6"></div>
-          <Link to={previousPath}>
-            <p>Skip for Now</p>
-          </Link>
+          <button className="place-self-start" onClick={() => navigate(-1)}>
+            Skip for Now
+          </button>
         </div>
       </div>
 

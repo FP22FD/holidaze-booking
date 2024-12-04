@@ -85,7 +85,7 @@ function VenueBookingCalendar({ venue }: VenueBookingCalendarProps) {
 
           <div className="text-center my-4 flex flex-col pb-4">
             <p className="text-body-large text-typography-primary-grey font-medium mb-4">Subtotal</p>
-            <p className="text-accent-pink font-extrabold text-4xl">${subtotal}</p>
+            <p className="text-accent-pink font-extrabold text-4xl">$ {subtotal}</p>
           </div>
         </div>
 

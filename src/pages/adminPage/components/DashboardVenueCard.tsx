@@ -55,7 +55,7 @@ const ManagementVenueCard = ({ venues, setInUpdate, setInDelete, handleCreateVen
               <div className="flex-col justify-between text-body-small mb-4">
                 <div className="flex items-end space-x-4">
                   <span className="text-typography-primary-grey text-body-small font-semibold">Price</span>
-                  <span>{venue.price}</span>
+                  <span>$ {venue.price}</span>
                 </div>
                 <div className="flex-col items-start space-x-4">
                   <span className="text-typography-primary-grey text-body-small font-semibold">Max Guests</span>

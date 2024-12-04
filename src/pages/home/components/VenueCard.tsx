@@ -59,7 +59,7 @@ function VenuesCard({ data }: CardProps) {
         </div>
 
         <div className="flex flex-col items-end">
-          <span className="tracking-tight text-accent-pink font-bold text-heading-4">{price}</span>
+          <span className="tracking-tight text-accent-pink font-bold text-heading-4">$ {price}</span>
           <span className="text-typography-primary-grey text-body-small">per person</span>
         </div>
       </div>

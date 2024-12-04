@@ -89,7 +89,7 @@ function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBo
         <div className="border-t border-neutral-default mb-6"></div>
         <div className="flex justify-between mb-6">
           <p>Total</p>
-          <p>{total}</p>
+          <p>$ {total}</p>
         </div>
 
         {!canBook && (
