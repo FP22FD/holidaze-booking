@@ -100,12 +100,26 @@ function LoginForm() {
 
       <Button type="submit" label="Login" variant="default" ariaLabel="Login" className="w-4/5" />
 
-      <div className="flex w-full space-x-6 place-content-center text-body-medium">
-        <p className="text-primary-dark-blue">Don't have an account? </p>
+      <div className="text-primary-dark-blue">
+        <div className="flex justify-center gap-8 text-nowrap text-body-medium">
+          <p className="text-primary-dark-blue">Don't have an account? </p>
 
-        <Link to={'/auth/register'}>
-          <p className="text-primary-dark-blue font-semibold">Register</p>
-        </Link>
+          <Link to={'/auth/register'}>
+            <p className="text-primary-dark-blue font-semibold">Register</p>
+          </Link>
+        </div>
+
+        <div className="flex justify-center gap-4 text-nowrap text-body-small my-8">
+          <Link to={'/'}>
+            <p>Back to Home</p>
+          </Link>
+
+          <div className="border-l border-primary-dark-blue"></div>
+
+          <button className="place-self-start" onClick={() => navigate(-1)}>
+            Skip for Now
+          </button>
+        </div>
       </div>
     </form>
   );

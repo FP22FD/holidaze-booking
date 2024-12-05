@@ -86,7 +86,7 @@ function ManagerRegisterForm() {
           </div>
         </div>
 
-        <div className="flex justify-center gap-8 pt-6 sm:pt-10 mt text-typography-primary-white text-body-small text-nowrap">
+        <div className="flex justify-center gap-8 pt-6 sm:pt-10 text-typography-primary-white text-body-small text-nowrap">
           <Link to={'/'}>
             <p>Back to Home</p>
           </Link>

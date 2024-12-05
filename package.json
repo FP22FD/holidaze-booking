@@ -9,12 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "npx prettier . --write",
     "preview": "vite preview",
-    "coverage": "vitest run --coverage",
-    "test": "vitest",
-    "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui",
-    "test:browser": "vitest --workspace=vitest.workspace.ts",
-    "dev": "npm-run-all --parallel start test"
+    "test": "vitest run",
+    "test:watch": "vitest --watch"
   },
   "dependencies": {
     "@demark-pro/react-booking-calendar": "^4.0.3",
@@ -48,7 +44,6 @@
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
     "jsdom": "^25.0.0",
-    "npm-run-all": "^4.1.5",
     "playwright": "^1.47.2",
     "postcss": "^8.4.47",
     "prettier": "3.3.3",
