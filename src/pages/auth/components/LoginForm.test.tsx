@@ -76,6 +76,7 @@ describe('LoginForm', async () => {
     vi.mock('../hooks/useLoginUser');
 
     const mockLoginUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useLoginUser as any).mockReturnValue({ loginUser: mockLoginUser, loading: false, error: null });
 
     const screen = render(
@@ -106,6 +107,7 @@ describe('LoginForm', async () => {
     vi.mock('../hooks/useLoginUser');
 
     const mockLoginUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useLoginUser as any).mockReturnValue({ loginUser: mockLoginUser, loading: false, error: null });
 
     const screen = render(

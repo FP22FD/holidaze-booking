@@ -80,6 +80,7 @@ describe('RegisterForm', async () => {
     vi.mock('../hooks/useRegisterUser');
 
     const mockRegisterUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useRegisterUser as any).mockReturnValue({ registerUser: mockRegisterUser, loading: false, error: null });
 
     const screen = render(
@@ -111,6 +112,7 @@ describe('RegisterForm', async () => {
     vi.mock('../hooks/useRegisterUser');
 
     const mockRegisterUser = vi.fn().mockResolvedValueOnce({ success: true, error: null });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useRegisterUser as any).mockReturnValue({ registerUser: mockRegisterUser, loading: false, error: null });
 
     const screen = render(
