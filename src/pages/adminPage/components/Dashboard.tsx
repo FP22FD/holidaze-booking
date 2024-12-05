@@ -10,7 +10,7 @@ function Dashboard() {
   const { requireUserLevel, profileData } = usePersistContext();
   const { error, loading, stats, venuesData, loadVenues } = useVenueManagement(profileData?.name);
 
-  requireUserLevel('customer');
+  requireUserLevel('manager');
 
   if (loading) {
     return (
