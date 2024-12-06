@@ -22,15 +22,10 @@ describe('RegisterForm', async () => {
       </PersistProvider>,
     );
 
-    // Debug the rendered component
-    // screen.debug();
-
-    //Check for labels
     await expect.element(screen.getByLabelText(/Name/i)).toBeInTheDocument();
     await expect.element(screen.getByLabelText(/Email/i)).toBeInTheDocument();
     await expect.element(screen.getByLabelText(/Password/i)).toBeInTheDocument();
 
-    // Check for the submit button
     await expect.element(screen.getByRole('button', { name: /register/i })).toBeInTheDocument();
   });
 
@@ -45,10 +40,8 @@ describe('RegisterForm', async () => {
       </PersistProvider>,
     );
 
-    // Trigger form submission
     await screen.getByRole('button', { name: /register/i }).click();
 
-    // Check for error messages
     await expect.element(screen.getByText(/Please enter your name/i)).toBeVisible();
     await expect.element(screen.getByText(/Please enter your email address/i)).toBeVisible();
     await expect.element(screen.getByText(/Please enter your password/i)).toBeVisible();
@@ -93,15 +86,12 @@ describe('RegisterForm', async () => {
       </PersistProvider>,
     );
 
-    // Fill in the form fields with valid data
     await screen.getByLabelText(/Name/i).fill('Harry');
     await screen.getByLabelText(/Email/i).fill('harry@stud.noroff.no');
     await screen.getByLabelText(/Password/i).fill('12345678');
 
-    // Trigger form submission
     await screen.getByRole('button', { name: /register/i }).click();
 
-    // Ensure registerUser has been called with the correct data
     await vi.waitFor(() => {
       expect(mockRegisterUser).toHaveBeenCalledTimes(1);
       expect(mockRegisterUser).toHaveBeenCalledWith('Harry', 'harry@stud.noroff.no', '12345678', false);
@@ -125,15 +115,12 @@ describe('RegisterForm', async () => {
       </PersistProvider>,
     );
 
-    // Fill in the form fields with invalid data
     await screen.getByLabelText(/Name/i).fill('Ha');
     await screen.getByLabelText(/Email/i).fill('harry@.noroff.no');
     await screen.getByLabelText(/Password/i).fill('123');
 
-    // Trigger form submission
     await screen.getByRole('button', { name: /register/i }).click();
 
-    // Ensure registerUser has been called with the incorrect data
     await vi.waitFor(() => {
       expect(mockRegisterUser).toHaveBeenCalledTimes(0);
     });
