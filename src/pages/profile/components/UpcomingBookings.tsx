@@ -53,11 +53,11 @@ const UpcomingBookings = ({ upcomingBookings }: Props) => {
               <h6 className="mb-4 font-medium">{booking.venue.name}</h6>
               <div className="flex justify-between">
                 <div className="text-start">
-                  <p className="text-typography-primary-grey">Check-in</p>
+                  <p className="text-typography-primary-grey">From</p>
                   <p>{new Date(booking.dateFrom).toLocaleDateString()}</p>
                 </div>
                 <div className="text-end">
-                  <p className="text-typography-primary-grey">Check-out</p>
+                  <p className="text-typography-primary-grey">To</p>
                   <p>{new Date(booking.dateTo).toLocaleDateString()}</p>
                 </div>
               </div>

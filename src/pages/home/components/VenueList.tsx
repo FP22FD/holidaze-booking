@@ -11,7 +11,7 @@ function VenueList() {
     <PageSection
       title="Venues"
       seoTitle="List of all available Venues | Holidaze Booking"
-      seoDescription="Browse our wide range of venues and find what you're looking for!"
+      seoDescription="Browse our wide range of Venues and find what you're looking for!"
       searchBar={true}
       error={error}
     >
