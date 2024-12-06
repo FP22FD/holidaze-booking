@@ -1,12 +1,12 @@
-import Button from '../../../shared/components/Button';
-import PageSection from '../../../shared/components/PageSection';
-import { useUpdateProfile } from '../hooks/useUpdateProfile';
-import { usePersistContext } from '../../../store/usePersistContext';
 import { useState } from 'react';
-import ProfileForm from './ProfileForm';
-import UpcomingBookings from './UpcomingBookings';
-import { useDataProfile } from '../hooks/useDataProfile';
-import Spinner from '../../../shared/components/Spinner';
+import Button from '../../shared/components/Button';
+import Spinner from '../../shared/components/Spinner';
+import UpcomingBookings from './components/UpcomingBookings';
+import PageSection from '../../shared/components/PageSection';
+import { useDataProfile } from './hooks/useDataProfile';
+import { useUpdateProfile } from './hooks/useUpdateProfile';
+import { usePersistContext } from '../../store/usePersistContext';
+import ProfileForm from './components/ProfileForm';
 
 function ProfilePage() {
   const { userType, profileData, requireUserLevel } = usePersistContext();

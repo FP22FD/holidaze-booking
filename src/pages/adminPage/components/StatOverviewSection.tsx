@@ -4,7 +4,7 @@ interface Props {
   stats: AdminVenuesStats;
 }
 
-const StatOverviewCards = ({ stats }: Props) => {
+const StatOverviewSection = ({ stats }: Props) => {
   return (
     <div className="flex justify-between gap-8">
       <div className="border rounded-lg p-8 my-2 text-center w-full">
@@ -19,4 +19,4 @@ const StatOverviewCards = ({ stats }: Props) => {
   );
 };
 
-export default StatOverviewCards;
+export default StatOverviewSection;

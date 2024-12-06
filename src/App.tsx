@@ -1,14 +1,14 @@
-import Home from './pages/home/Home';
 import Layout from './shared/components/Layout';
 import PageNotFound from './pages/notFound/NotFound';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import Profile from './pages/profile/Profile';
-import Venue from './pages/venue/Venue';
 import AuthPage from './pages/auth/AuthPage';
-import Dashboard from './pages/adminPage/components/Dashboard';
 import { PersistProvider } from './store/PersistContext';
 import { ErrorPage } from './pages/errorPage/ErrorPage';
+import HomePage from './pages/home/HomePage';
+import ProfilePage from './pages/profile/ProfilePage';
+import DashboardPage from './pages/adminPage/DashboardPage';
+import VenueDetailPage from './pages/venue/VenueDetailPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -18,11 +18,11 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Home />,
+          element: <HomePage />,
         },
         {
           path: '/venues/:id',
-          element: <Venue />,
+          element: <VenueDetailPage />,
         },
         {
           path: '/auth/login',
@@ -38,11 +38,11 @@ function App() {
         },
         {
           path: '/profile',
-          element: <Profile />,
+          element: <ProfilePage />,
         },
         {
           path: '/admin',
-          element: <Dashboard />,
+          element: <DashboardPage />,
         },
       ],
     },

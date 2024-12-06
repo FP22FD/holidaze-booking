@@ -5,7 +5,7 @@ interface Props {
   venues: AdminVenueData[];
 }
 
-const VenueBookings = ({ venues }: Props) => {
+const VenueBookingsSection = ({ venues }: Props) => {
   if (venues.length === 0) {
     return (
       <div className="py-2 my-2">
@@ -86,4 +86,4 @@ const VenueBookings = ({ venues }: Props) => {
   ));
 };
 
-export default VenueBookings;
+export default VenueBookingsSection;

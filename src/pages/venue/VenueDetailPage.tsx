@@ -1,7 +1,11 @@
 import { useParams } from 'react-router-dom';
-import PageSection from '../../../shared/components/PageSection';
-import { useFetchVenue } from '../hooks/fetchVenue';
-import StarRating from '../../../shared/components/StarRating';
+import { useState } from 'react';
+import PageSection from '../../shared/components/PageSection';
+import StarRating from '../../shared/components/StarRating';
+import { useFetchVenue } from './hooks/fetchVenue';
+import { Facility } from './components/Facility';
+import VenueBookingCalendar from './components/VenueBookingCalendar';
+import Spinner from '../../shared/components/Spinner';
 import {
   PiCarLight,
   PiCoffeeLight,
@@ -10,12 +14,8 @@ import {
   PiPawPrintLight,
   PiWifiHighLight,
 } from 'react-icons/pi';
-import { Facility } from './Facility';
-import VenueBookingCalendar from './VenueBookingCalendar';
-import Spinner from '../../../shared/components/Spinner';
-import { useState } from 'react';
 
-function VenueCard() {
+function VenueDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { data: venue, error } = useFetchVenue(id || '');
   const [imageError, setImageError] = useState<boolean>(false);
@@ -99,4 +99,4 @@ function VenueCard() {
   );
 }
 
-export default VenueCard;
+export default VenueDetailPage;

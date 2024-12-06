@@ -6,14 +6,14 @@ import VenueForm from './VenueForm';
 import { Venue } from '../../../types/venue.type';
 import Spinner from '../../../shared/components/Spinner';
 import { useDeleteVenue } from '../hooks/useDeleteVenue';
-import DashboardVenueCard from './DashboardVenueCard';
+import DashboardVenueCard from './ManagerVenueCard';
 
 interface Props {
   venues: AdminVenueData[];
   onRefresh: () => void;
 }
 
-const ManageVenues = ({ venues, onRefresh }: Props) => {
+const VenueSection = ({ venues, onRefresh }: Props) => {
   const { loading: loadingDelete, error: errorDelete, deleteVenue } = useDeleteVenue();
 
   const [inUpdate, setInUpdate] = useState<Venue | undefined>(undefined);
@@ -138,4 +138,4 @@ const ManageVenues = ({ venues, onRefresh }: Props) => {
   );
 };
 
-export default ManageVenues;
+export default VenueSection;

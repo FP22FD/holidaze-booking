@@ -1,9 +1,9 @@
-import { useFetchVenues } from '../hooks/fetchVenues';
-import VenueCard from './VenueCard';
-import PageSection from '../../../shared/components/PageSection';
-import { SkeletonVenuesCard } from './SkeletonVenuesCard';
+import { useFetchVenues } from './hooks/fetchVenues';
+import VenueCard from './components/VenueCard';
+import PageSection from '../../shared/components/PageSection';
+import { SkeletonVenuesCard } from './components/SkeletonVenuesCard';
 
-function VenueList() {
+function HomePage() {
   const { data, loading, error } = useFetchVenues();
   const venues = data || [];
 
@@ -24,4 +24,4 @@ function VenueList() {
   );
 }
 
-export default VenueList;
+export default HomePage;
