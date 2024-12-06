@@ -8,7 +8,7 @@ interface Props {
 const VenueBookings = ({ venues }: Props) => {
   if (venues.length === 0) {
     return (
-      <div className="p-2 mx-2">
+      <div className="py-2 my-2">
         <div className="flex justify-between place-items-center border-b pb-2">
           <p className="text-primary-dark-blue font-bold">Bookings</p>
         </div>

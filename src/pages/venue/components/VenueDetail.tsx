@@ -43,7 +43,7 @@ function VenueCard() {
       error={error}
     >
       <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 mt-2">
-        <div className="w-full md:w-2/3 mb-8 md:mb-0">
+        <div className="w-full md:w-2/3 md:mb-0 shadow-md rounded-lg space-y-6 mb-8">
           {imageError || !imageUrl ? (
             <PiImageDuotone className="w-full h-64 object-cover text-neutral-default" />
           ) : (
@@ -83,7 +83,7 @@ function VenueCard() {
             )}
           </div>
 
-          <div className="flex flex-wrap px-2 gap-4 mt-6">
+          <div className="flex flex-wrap px-2 gap-4 mt-6 pb-6">
             {meta?.wifi && <Facility icon={<PiWifiHighLight />} label="Free Wifi" />}
             {meta?.parking && <Facility icon={<PiCarLight />} label="Free Parking" />}
             {meta?.pets && <Facility icon={<PiPawPrintLight />} label="Pets Allowed" />}

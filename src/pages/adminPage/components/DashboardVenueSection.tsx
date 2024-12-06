@@ -116,7 +116,7 @@ const ManageVenues = ({ venues, onRefresh }: Props) => {
         />
       )}
 
-      <div className="m-2 p-2">
+      <div className="my-2 py-2">
         <div className="flex justify-between p-2 place-items-center border-b mx-2">
           <p className="font-semibold">Venues</p>
           <div className="flex space-x-2 text-body-small sm:text-body-medium text-typography-primary-grey">
