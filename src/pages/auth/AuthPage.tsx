@@ -3,6 +3,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import ManagerRegisterForm from './components/ManagerRegisterForm';
 import logo from '/src/assets/images/logo.svg';
+import { Helmet } from 'react-helmet-async';
 
 export default function AuthPage() {
   const navigate = useNavigate();
@@ -22,6 +23,11 @@ export default function AuthPage() {
 
   return (
     <div className="bg-auth-background bg-cover bg-center min-h-screen flex items-center justify-center p-6 sm:p-12 lg:pt-16">
+      <Helmet>
+        <title>{'Login and Register | Holidaze Booking'}</title>
+        <meta name="description" content={'Log in or create an account on Holidaze to book or manage your stays.'} />
+      </Helmet>
+
       <Link to="/">
         <img src={logo} alt="Logo" className="absolute top-8 w-auto sm:top-12 sm:left-12" />
       </Link>
