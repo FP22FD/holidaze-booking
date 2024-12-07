@@ -28,7 +28,7 @@ export const Modal = ({ onClose, title, body, footer }: ModalProps) => {
             </h2>
           </div>
         )}
-        <div className="flex flex-col items-center">{body}</div>
+        <div className="flex flex-col items-center text-center">{body}</div>
         {footer && <div className="mt-6">{footer}</div>}
       </div>
     </div>

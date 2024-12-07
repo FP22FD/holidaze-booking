@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { PiCheckCircleFill } from 'react-icons/pi';
 
 interface BookingSummaryProps {
+  isLoggedIn: boolean;
   from: Date | undefined;
   to: Date | undefined;
   numGuests: number;
@@ -18,12 +19,16 @@ interface BookingSummaryProps {
   venue: Venue;
 }
 
-function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBook }: BookingSummaryProps) {
+function BookingSummary({ isLoggedIn, numGuests, numberNights, total, venue, from, to, canBook }: BookingSummaryProps) {
   const { createBooking, loading, error } = useCreateBooking();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [bookingError, setBookingError] = useState<string | null>(null);
 
   const handleBooking = async () => {
+    if (!isLoggedIn) {
+      return;
+    }
+
     if (!from || !to || numGuests <= 0) {
       setBookingError('Choose a date range and guests to proceed');
       return;
@@ -51,7 +56,7 @@ function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBo
         <Modal
           onClose={() => setIsSuccess(false)}
           body={
-            <div className="text-primary-dark-blue font-bold place-items-center text-center mb-8">
+            <div className="text-primary-dark-blue font-bold flex flex-col place-items-center text-center mb-8">
               <PiCheckCircleFill className="w-16 h-16 text-primary-dark-blue mb-6" />
               Thank you for booking <span className="text-primary-dark-blue">{venue.name}!</span>
             </div>
@@ -94,16 +99,16 @@ function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBo
           <p>$ {total}</p>
         </div>
 
-        {!canBook && (
+        {!isLoggedIn && (
           <div className="flex w-full space-x-6 place-content-center text-body-medium text-status-error-red mb-6">
-            <p>Sign in to start booking your stay</p>
+            <p>Sign in to book your stay</p>
             <Link to={'/auth/login'}>
               <p className=" font-semibold">Login</p>
             </Link>
           </div>
         )}
 
-        {!canBook && (
+        {isLoggedIn && !canBook && (
           <div className="space-y-4">
             <div className="w-full place-self-center">
               <Button
@@ -113,13 +118,14 @@ function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBo
                 variant="secondary"
                 size="large"
                 fullWidth={true}
+                disabled={true}
                 onClick={handleBooking}
               />
             </div>
           </div>
         )}
 
-        {canBook && (
+        {isLoggedIn && canBook && (
           <div className="w-full place-self-center">
             <Button
               label="Confirm Booking"

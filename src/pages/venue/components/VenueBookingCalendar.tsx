@@ -10,7 +10,7 @@ interface VenueBookingCalendarProps {
 }
 
 function VenueBookingCalendar({ venue }: VenueBookingCalendarProps) {
-  const { userType } = usePersistContext();
+  const { userType, isLoggedIn } = usePersistContext();
   const [selectedDates, setSelectedDates] = useState<CalendarSelected[]>([]);
   const [numGuests, setNumGuests] = useState<number>(1);
 
@@ -91,6 +91,7 @@ function VenueBookingCalendar({ venue }: VenueBookingCalendarProps) {
 
         {canBook && (
           <BookingSummary
+            isLoggedIn={isLoggedIn}
             from={from}
             to={to}
             numGuests={numGuests}
