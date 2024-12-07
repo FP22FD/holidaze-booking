@@ -102,7 +102,7 @@ const ManagerVenueCard = ({ venues, setInUpdate, setInDelete, handleCreateVenue 
           </div>
         ))}
         <div className="shadow-custom hover:shadow-md transition-shadow p-2 rounded-lg border-2 border-dashed flex items-center justify-center min-w-48 lg:min-w-72">
-          <div className="text-typography-primary-grey place-items-center space-y-4 my-4">
+          <div className="text-typography-primary-grey text-center place-items-center space-y-4 my-4">
             <button aria-label="Create Venue" onClick={handleCreateVenue}>
               <PiPlusLight className="text-typography-primary-white bg-pink-gradient rounded w-8 h-8" />
             </button>

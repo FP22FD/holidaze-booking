@@ -35,8 +35,8 @@ function DashboardPage() {
       seoDescription="Manage your venues and bookings made from your customer"
       searchBar={false}
     >
-      <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16 pb-2">
-        <div className="w-full flex flex-col gap-8 rounded-lg pb-10">
+      <div className="w-full mx-auto flex flex-col md:flex-row md:space-x-8 lg:space-x-16">
+        <div className="w-full flex flex-col gap-8 rounded-lg">
           <StatOverviewSection stats={stats} />
           <VenueSection venues={venuesData ?? []} onRefresh={() => loadVenues()} />
           <VenueBookingsSection venues={venuesData ?? []} />

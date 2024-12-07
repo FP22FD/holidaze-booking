@@ -51,14 +51,20 @@ const UpcomingBookings = ({ upcomingBookings }: Props) => {
 
             <div className="mt-4 text-primary-dark-blue text-body-medium">
               <h6 className="mb-4 font-medium">{booking.venue.name}</h6>
+
+              <div className="flex justify-between">
+                <p className="text-primary-dark font-semibold">Guests</p>
+                <p className="text-typography-primary-grey">{booking.guests}</p>
+              </div>
+
               <div className="flex justify-between">
                 <div className="text-start">
-                  <p className="text-typography-primary-grey">From</p>
-                  <p>{new Date(booking.dateFrom).toLocaleDateString()}</p>
+                  <p className="text-primary-dark font-semibold">From</p>
+                  <p className="text-typography-primary-grey">{new Date(booking.dateFrom).toLocaleDateString()}</p>
                 </div>
                 <div className="text-end">
-                  <p className="text-typography-primary-grey">To</p>
-                  <p>{new Date(booking.dateTo).toLocaleDateString()}</p>
+                  <p className="text-primary-dark font-semibold">To</p>
+                  <p className="text-typography-primary-grey">{new Date(booking.dateTo).toLocaleDateString()}</p>
                 </div>
               </div>
             </div>
