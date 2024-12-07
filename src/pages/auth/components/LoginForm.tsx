@@ -109,14 +109,14 @@ function LoginForm() {
           </Link>
         </div>
 
-        <div className="flex justify-center gap-4 text-nowrap text-body-small my-8">
+        <div className="flex justify-center gap-4 text-nowrap text-body-small font-semibold my-8">
           <Link to={'/'}>
-            <p>Back to Home</p>
+            <p className="hover:text-accent-pink">Back to Home</p>
           </Link>
 
           <div className="border-l border-primary-dark-blue"></div>
 
-          <button className="place-self-start" onClick={() => navigate(-1)}>
+          <button className="place-self-start hover:text-accent-pink" onClick={() => navigate(-1)}>
             Skip for Now
           </button>
         </div>

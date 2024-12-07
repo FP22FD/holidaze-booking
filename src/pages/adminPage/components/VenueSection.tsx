@@ -119,7 +119,7 @@ const VenueSection = ({ venues, onRefresh }: Props) => {
       <div className="my-2 py-2">
         <div className="flex justify-between p-2 place-items-center border-b mx-2">
           <p className="font-semibold">Venues</p>
-          <div className="flex space-x-2 text-body-small sm:text-body-medium text-typography-primary-grey">
+          <div className="flex space-x-2 text-body-medium text-typography-primary-grey">
             <p>Venues</p>
             <span className="font-semibold">{venues.length}</span>
           </div>

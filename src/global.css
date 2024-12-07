@@ -61,10 +61,7 @@
 
 .calendar__day-content[data-selected='true'] {
   color: #ffffff !important;
-  /* font-weight: bold; */
   background-color: #000 !important;
-  /* border-top-left-radius: 10px; */
-  /* border-bottom-left-radius: 10px; */
 }
 
 .calendar__day-today {
@@ -82,4 +79,8 @@
 
 .calendar__month-arrow-next {
   color: #101935 !important;
+}
+
+.calendar__calendar-container {
+  max-width: unset;
 }

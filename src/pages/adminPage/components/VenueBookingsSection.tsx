@@ -46,7 +46,7 @@ const VenueBookingsSection = ({ venues }: Props) => {
               key={booking.id}
               className="bg-neutral-white rounded-lg p-2 shadow-md hover:shadow-lg transition-shadow border flex flex-col h-full"
             >
-              <div className="flex-col text-body-small flex-grow">
+              <div className="flex-col flex-grow text-body-medium">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <div className="w-8 h-8 rounded-full overflow-hidden">
                     <img
@@ -57,10 +57,9 @@ const VenueBookingsSection = ({ venues }: Props) => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-primary-dark-blue">{booking.customer.name}</h4>
-                    <p className="text-typography-primary-grey">{booking.customer.email}</p>
+                    <p className="text-typography-primary-grey text-body-small">{booking.customer.email}</p>
                   </div>
                 </div>
-                {/* <div className="flex justify-between"></div> */}
                 <div className="flex justify-between">
                   <p className="text-primary-dark font-semibold">Guests</p>
                   <p className="text-typography-primary-grey">{booking.guests}</p>
@@ -68,9 +67,9 @@ const VenueBookingsSection = ({ venues }: Props) => {
 
                 <div className="border-t border-neutral-default my-4"></div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="flex justify-between">
                   <div className="flex flex-col text-start">
-                    <p className="font-semibold">From</p>
+                    <p className="font-semibold ">From</p>
                     <p className="text-typography-primary-grey">{new Date(booking.dateFrom).toLocaleDateString()}</p>
                   </div>
                   <div className="flex flex-col text-end">

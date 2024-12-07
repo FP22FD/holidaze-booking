@@ -30,7 +30,7 @@ function DashboardPage() {
 
   return (
     <PageSection
-      title="Manager Dashboard"
+      title="Dashboard"
       seoTitle="Manager Dashboard | Holidaze Booking"
       seoDescription="Manage your venues and bookings made from your customer"
       searchBar={false}

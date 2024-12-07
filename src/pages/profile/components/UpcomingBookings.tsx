@@ -50,12 +50,14 @@ const UpcomingBookings = ({ upcomingBookings }: Props) => {
             </div>
 
             <div className="mt-4 text-primary-dark-blue text-body-medium">
-              <h6 className="mb-4 font-medium">{booking.venue.name}</h6>
+              <h4 className="mb-4 font-bold text-typography-primary-blue">{booking.venue.name}</h4>
 
               <div className="flex justify-between">
                 <p className="text-primary-dark font-semibold">Guests</p>
                 <p className="text-typography-primary-grey">{booking.guests}</p>
               </div>
+
+              <div className="border-t border-neutral-default my-2"></div>
 
               <div className="flex justify-between">
                 <div className="text-start">

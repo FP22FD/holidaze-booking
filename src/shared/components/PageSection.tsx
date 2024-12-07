@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { SEO } from './SEO';
-import { AutoCompleteSearchBar } from '../../pages/home/components/SeachBar';
+import { AutoCompleteSearchBar } from '../../pages/home/components/SearchBar';
 
 interface Props {
   title: string;
@@ -9,9 +9,18 @@ interface Props {
   searchBar?: boolean;
   error?: string;
   children: ReactNode;
+  enableFlex?: boolean;
 }
 
-function PageSection({ title, seoTitle, seoDescription, error, searchBar = false, children }: Props) {
+function PageSection({
+  title,
+  seoTitle,
+  seoDescription,
+  error,
+  searchBar = false,
+  children,
+  enableFlex = false,
+}: Props) {
   return (
     <section className="row-start-1 col-span-12 flex flex-col items-center">
       <SEO title={seoTitle} description={seoDescription} />
@@ -20,9 +29,9 @@ function PageSection({ title, seoTitle, seoDescription, error, searchBar = false
           <AutoCompleteSearchBar />
         </div>
       )}
-      <div className="max-w-screen-xl w-full mx-auto px-4 lg:px-8 flex flex-col items-center">
+      <div className={`max-w-screen-xl w-full mx-auto px-4 lg:px-8 ${enableFlex ? 'flex flex-col items-center' : ''}`}>
         <div className="w-full text-left border-b">
-          <h1 className="text-primary-dark-blue font-semibold text-md md:text-heading-4 capitalize inline-block relative">
+          <h1 className="text-primary-dark-blue font-semibold text-heading-5 md:text-heading-4 capitalize inline-block relative">
             {title}
             <span className="absolute left-0 bottom-0 h-1 w-full bg-accent-pink rounded-t-lg"></span>
           </h1>

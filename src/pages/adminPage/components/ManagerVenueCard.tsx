@@ -32,43 +32,38 @@ const ManagerVenueCard = ({ venues, setInUpdate, setInDelete, handleCreateVenue 
 
             <h4 className="text-typography-primary-blue font-bold">{venue.name}</h4>
 
-            <div className="flex justify-between mb-2 items-center">
+            <div className="flex justify-between mb-2 items-center text-typography-primary-grey">
               <div className="text-body-medium flex items-center">
                 <PiMapPinFill className="mr-2" />
                 {venue.location?.country || 'Location unavailable'}
               </div>
-              <div className="flex flex-col items-start">
-                {venue.rating && <StarRating rating={venue.rating} />}
-                <div className="text-typography-primary-grey text-body-small flex space-x-1"></div>
-              </div>
+              <div className="flex flex-col items-start">{venue.rating && <StarRating rating={venue.rating} />}</div>
             </div>
 
             <div className=" flex-1">
-              <p className="text-body-medium mb-4 whitespace-pre-line">{venue.description}</p>
+              <p className="text-body-medium text-primary-dark-blue mb-4 whitespace-pre-line">{venue.description}</p>
             </div>
 
-            <div className="mt-2">
-              <div className="flex-col justify-between text-body-small mb-4">
+            <div className="mt-2 text-typography-primary-grey text-body-medium">
+              <div className="flex-col justify-between mb-4">
                 <div className="flex items-end space-x-4">
-                  <span className="text-typography-primary-grey text-body-small font-semibold">Price</span>
+                  <span className="font-semibold">Price</span>
                   <span>$ {venue.price}</span>
                 </div>
                 <div className="flex-col items-start space-x-4">
-                  <span className="text-typography-primary-grey text-body-small font-semibold">Max Guests</span>
+                  <span className="font-semibold">Max Guests</span>
                   <span>{venue.maxGuests}</span>
                 </div>
               </div>
 
-              <div className="flex justify-between text-body-small">
+              <div className="flex justify-between">
                 <div className="flex flex-col items-start">
-                  <p className="text-typography-primary-grey text-body-small font-semibold">Facilities</p>
-                  <div className="text-typography-primary-grey text-body-small">
-                    <div className="flex flex-wrap justify-between gap-4 text-body-small">
-                      {venue.meta?.pets && <span>Pets</span>}
-                      {venue.meta?.breakfast && <span>Breakfast</span>}
-                      {venue.meta?.wifi && <span>Free Wifi</span>}
-                      {venue.meta?.parking && <span>Free Parking</span>}
-                    </div>
+                  <p className=" font-semibold">Facilities</p>
+                  <div className="flex flex-wrap justify-between gap-4">
+                    {venue.meta?.pets && <span>Pets</span>}
+                    {venue.meta?.breakfast && <span>Breakfast</span>}
+                    {venue.meta?.wifi && <span>Free Wifi</span>}
+                    {venue.meta?.parking && <span>Free Parking</span>}
                   </div>
                 </div>
               </div>

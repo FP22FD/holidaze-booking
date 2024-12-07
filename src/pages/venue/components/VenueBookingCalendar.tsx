@@ -54,9 +54,9 @@ function VenueBookingCalendar({ venue }: VenueBookingCalendarProps) {
 
   return (
     <>
-      <div className="max-w-md bg-white ">
-        <div className="max-w-md p-6 shadow-md rounded-lg space-y-6 mb-8 relative">
-          <h2 className="text-2xl font-bold text-center mb-6 text-primary-dark-blue">Booking</h2>
+      <div className="w-full md:max-w-md bg-white">
+        <div className="w-full md:max-w-md p-6 shadow-md rounded-lg space-y-6 mb-8 relative">
+          <h2 className="text-heading-4 font-bold text-center mb-6 text-primary-dark-blue">Booking</h2>
           <div className="bg-neutral-white">
             <Calendar
               selected={selectedDates}

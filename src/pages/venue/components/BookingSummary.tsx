@@ -74,10 +74,12 @@ function BookingSummary({ numGuests, numberNights, total, venue, from, to, canBo
 
       <div className="max-w-md p-6 shadow-md rounded-lg text-typography-primary-grey">
         {loading && <Spinner />}
-        {error && <p className="text-status-error-red">{error}</p>}
-        {bookingError && <p className="text-status-error-red text-body-medium text-center">{bookingError}</p>}
+        {bookingError && (
+          <p className="text-status-error-red text-body-medium font-semibold text-center">{bookingError}</p>
+        )}
+        {error && <p className="text-status-error-red text-body-medium text-center">{error} Try again!</p>}
 
-        <h3 className="text-xl font-bold text-center mb-6 text-primary-dark-blue">Request to book</h3>
+        <h3 className="text-heading-4 font-bold text-center mb-6 text-primary-dark-blue">Request to book</h3>
         <div className="flex justify-between">
           <p>Nights</p>
           <p>{numberNights}</p>

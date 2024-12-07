@@ -15,7 +15,6 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Poppins', ...fontFamily.sans], //Poppins as the default sans font
-        barlow: ['Barlow', ...fontFamily.sans], // Barlow for H1
       },
       fontSize: {
         'display-1': ['3.75rem', { lineHeight: '1.1', fontWeight: '700' }], // 60px text-6xl
@@ -136,20 +135,8 @@ module.exports = {
             fontWeight: '800',
             src: 'url("/src/assets/fonts/poppins/Poppins-ExtraBold.ttf") format("TrueType")',
           },
-          {
-            fontFamily: 'Barlow',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            src: 'url("/src/assets/fonts/barlow/Barlow-Regular.ttf") format("truetype")',
-          },
-          {
-            fontFamily: 'Barlow',
-            fontStyle: 'normal',
-            fontWeight: '700',
-            src: 'url("/src/assets/fonts/barlow/Barlow-Bold.ttf") format("TrueType")',
-          },
         ],
-        h1: { fontFamily: 'Barlow, sans-serif' },
+        h1: { fontFamily: 'Poppins, sans-serif' },
       });
     },
   ],
