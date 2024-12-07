@@ -30,7 +30,6 @@ export const Modal = ({ onClose, title, body, footer }: ModalProps) => {
         )}
         <div className="flex flex-col items-center">{body}</div>
         {footer && <div className="mt-6">{footer}</div>}
-        {/* <div className="mt-6">{footer}</div> */}
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import { Location } from './location.types';
 import { Media } from './media.types';
 import { Meta } from './meta.types';
 
-/** GET venue detail response. */
 export interface VenueResponse {
   data: Venue;
   meta?: Meta;

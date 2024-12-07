@@ -79,7 +79,6 @@ export function DropdownMenu() {
               </NavLink>
             ))}
 
-            {/* Log Out Button */}
             <button
               onClick={() => {
                 logOut();
